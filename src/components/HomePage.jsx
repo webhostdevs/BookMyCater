@@ -32,7 +32,7 @@ const HomePage = () => {
           placeholder="Search by vendor ..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border rounded p-2 w-full"
+          className="border rounded p-2 w-half"
         />
       </div>
 
