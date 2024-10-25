@@ -21,13 +21,13 @@ const HomePage = () => {
   }, []);
 
   // Filter vendors based on selected location and search term
-  const filteredVendors = vendors.filter(vendor => {
-    const matchesLocation = selectedLocation === '' || 
-                            (vendor.operating_regions && 
-                             vendor.operating_regions.split(',').map(loc => loc.trim().toLowerCase()).includes(selectedLocation.trim().toLowerCase()));
-    const matchesSearch = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesLocation && matchesSearch;
-  });
+  // const filteredVendors = vendors.filter(vendor => {
+  //   const matchesLocation = selectedLocation === '' || 
+  //                           (vendor.operating_regions && 
+  //                            vendor.operating_regions.split(',').map(loc => loc.trim().toLowerCase()).includes(selectedLocation.trim().toLowerCase()));
+  //   const matchesSearch = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
+  //   return matchesLocation && matchesSearch;
+  // });
 
   return (
     <div className="p-6">
