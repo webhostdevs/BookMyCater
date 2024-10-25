@@ -45,23 +45,23 @@ const HomePage = () => {
         />
 
         {/* Location Filter Dropdown */}
-        <select
+{/*         <select
           value={selectedLocation}
           onChange={(e) => setSelectedLocation(e.target.value)}
           className="border rounded p-2"
         >
-          <option value="">All Locations</option>
+          <option value="">All Locations</option> */}
           {/* Static locations */}
-          <option value="New York">New York</option>
+{/*           <option value="New York">New York</option>
           <option value="Chicago">Chicago</option>
-          <option value="Miami">Miami</option>
+          <option value="Miami">Miami</option> */}
           {/* Dynamically generated locations */}
-          {locations.map(location => (
+{/*           {locations.map(location => (
             <option key={location} value={location}>
               {location}
             </option>
           ))}
-        </select>
+        </select> */}
       </div>
 
       {/* Vendor Listings */}
