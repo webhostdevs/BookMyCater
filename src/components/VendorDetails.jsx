@@ -7,7 +7,7 @@ const VendorDetails = () => {
   const [vendor, setVendor] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost/backend/getVendorDetails.php?id=${id}`)
+    axios.get(`http://bookmycater.webhostmost.com/getVendorDetails.php?id=${id}`)
       .then(response => setVendor(response.data))
       .catch(error => console.error(error));
   }, [id]);
