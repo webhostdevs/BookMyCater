@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [vendors, setVendors] = useState([]);
-  const [locations, setLocations] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -13,29 +11,19 @@ const HomePage = () => {
     axios.get('https://bookmycater.freewebhostmost.com/getVendors.php')
       .then(response => setVendors(response.data))
       .catch(error => console.error(error));
-
-    // // Fetch locations for filtering
-    // axios.get('https://bookmycater.freewebhostmost.com/getVendorLocations.php')
-    //   .then(response => setLocations(response.data))
-    //   .catch(error => console.error(error));
   }, []);
 
-  // Filter vendors based on selected location and search term
-  const filteredVendors = vendors.filter(vendor => {
-    const matchesLocation = selectedLocation === '' || 
-                            (vendor.operating_regions && 
-                             vendor.operating_regions.split(',').map(loc => loc.trim().toLowerCase()).includes(selectedLocation.trim().toLowerCase()));
-    const matchesSearch = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesLocation && matchesSearch;
-  });
+  // Filter vendors based on search term
+  const filteredVendors = vendors.filter(vendor => 
+    vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
 
-      {/* Search and Location Filters */}
-      <div className="flex gap-4 mb-4">
-        {/* Search Input */}
+      {/* Search Input */}
+      <div className="mb-4">
         <input
           type="text"
           placeholder="Search by vendor ..."
@@ -43,25 +31,6 @@ const HomePage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border rounded p-2 w-full"
         />
-
-        {/* Location Filter Dropdown */}
-{/*         <select
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-          className="border rounded p-2"
-        >
-          <option value="">All Locations</option> */}
-          {/* Static locations */}
-{/*           <option value="New York">New York</option>
-          <option value="Chicago">Chicago</option>
-          <option value="Miami">Miami</option> */}
-          {/* Dynamically generated locations */}
-{/*           {locations.map(location => (
-            <option key={location} value={location}>
-              {location}
-            </option>
-          ))}
-        </select> */}
       </div>
 
       {/* Vendor Listings */}
