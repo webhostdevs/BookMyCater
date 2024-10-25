@@ -21,13 +21,13 @@ const HomePage = () => {
   }, []);
 
   // Filter vendors based on selected location and search term
-  // const filteredVendors = vendors.filter(vendor => {
-  //   const matchesLocation = selectedLocation === '' || 
-  //                           (vendor.operating_regions && 
-  //                            vendor.operating_regions.split(',').map(loc => loc.trim().toLowerCase()).includes(selectedLocation.trim().toLowerCase()));
-  //   const matchesSearch = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-  //   return matchesLocation && matchesSearch;
-  // });
+  const filteredVendors = vendors.filter(vendor => {
+    const matchesLocation = selectedLocation === '' || 
+                            (vendor.operating_regions && 
+                             vendor.operating_regions.split(',').map(loc => loc.trim().toLowerCase()).includes(selectedLocation.trim().toLowerCase()));
+    const matchesSearch = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesLocation && matchesSearch;
+  });
 
   return (
     <div className="p-6">
@@ -75,7 +75,7 @@ const HomePage = () => {
             >
               <div className="h-48">
                 <img
-                  src={`http://localhost/backend/${vendor.event_photos}`}
+                  src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
                   alt={vendor.company_name}
                   className="w-full h-full object-cover rounded-t-md"
                 />
