@@ -10,12 +10,12 @@ const HomePage = () => {
 
   useEffect(() => {
     // Fetch all vendors on component mount
-    axios.get('http://localhost/backend/getVendors.php')
+    axios.get('http://bookmycater.webhostmost.com/getVendors.php')
       .then(response => setVendors(response.data))
       .catch(error => console.error(error));
 
     // Fetch locations for filtering
-    axios.get('http://localhost/backend/getVendorLocations.php')
+    axios.get('http://bookmycater.webhostmost.com/getVendorLocations.php')
       .then(response => setLocations(response.data))
       .catch(error => console.error(error));
   }, []);
