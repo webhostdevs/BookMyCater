@@ -9,7 +9,7 @@ const VendorSearch = () => {
 
     useEffect(() => {
         const fetchLocations = async () => {
-            const response = await axios.get('`http://bookmycater.webhostmost.com/vendor_locations.php'); // Adjust this endpoint to get locations
+            const response = await axios.get('`http://bookmycater.freewebhostmost.com/vendor_locations.php'); // Adjust this endpoint to get locations
             setLocations(response.data);
         };
 
@@ -17,7 +17,7 @@ const VendorSearch = () => {
     }, []);
 
     const handleSearch = async () => {
-        const response = await axios.get('`http://bookmycater.webhostmost.com/vendor_search.php', {
+        const response = await axios.get('`http://bookmycater.freewebhostmost.com/vendor_search.php', {
             params: {
                 locations: selectedLocations.join(','), // Comma-separated for query
                 vendorName: searchTerm
