@@ -9,14 +9,17 @@ const HomePage = () => {
   useEffect(() => {
     // Fetch all vendors on component mount
     axios.get('https://bookmycater.freewebhostmost.com/getVendors.php')
-      .then(response => setVendors(response.data))
+      .then(response => {
+        const data = Array.isArray(response.data) ? response.data : []; // Ensure it's an array
+        setVendors(data);
+      })
       .catch(error => console.error(error));
   }, []);
 
   // Filter vendors based on search term
-  const filteredVendors = vendors.filter(vendor => 
+  const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => 
     vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ) : [];
 
   return (
     <div className="p-6">
