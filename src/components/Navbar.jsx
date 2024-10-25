@@ -9,7 +9,7 @@ function Navbar({ searchTerm, setSearchTerm }) {
 
       {/* Right - Search and Navigation */}
       <div className="flex items-center space-x-4">
-        <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+{/*         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
           <input
             type="text"
             placeholder="Location..."
@@ -18,7 +18,7 @@ function Navbar({ searchTerm, setSearchTerm }) {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button className="bg-gray-600 text-white px-4 py-2">Search</button>
-        </div>
+        </div> */}
         <Link to="/" className="text-gray-700 hover:text-black transition">Home</Link>
         <Link to="/about" className="text-gray-700 hover:text-black transition">About</Link>
         <Link to="/contact" className="text-gray-700 hover:text-black transition">Contact</Link>
