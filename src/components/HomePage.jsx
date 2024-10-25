@@ -14,10 +14,10 @@ const HomePage = () => {
       .then(response => setVendors(response.data))
       .catch(error => console.error(error));
 
-    // Fetch locations for filtering
-    axios.get('https://bookmycater.freewebhostmost.com/getVendorLocations.php')
-      .then(response => setLocations(response.data))
-      .catch(error => console.error(error));
+    // // Fetch locations for filtering
+    // axios.get('https://bookmycater.freewebhostmost.com/getVendorLocations.php')
+    //   .then(response => setLocations(response.data))
+    //   .catch(error => console.error(error));
   }, []);
 
   // Filter vendors based on selected location and search term
