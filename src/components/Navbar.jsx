@@ -53,12 +53,12 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
             className="p-2 w-64 border-none focus:outline-none focus:ring-0 bg-gray-100"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-          /> */}
-          <button className="bg-gray-600 text-white px-4 py-2">Search</button>
+          /> 
+          <button className="bg-gray-600 text-white px-4 py-2">Search</button>  */}
         </div>
         <Link to="/" className="text-gray-700 hover:text-black transition">Home</Link>
         <Link to="/about" className="text-gray-700 hover:text-black transition">About</Link>
-        <Link to="/contact" className="text-gray-700 hover:text-black transition">Contact</Link>
+        <Link to="/contact" className="text-gray-700 hover:text-black transition">Contact</Link>  
 
         {/* Login/Logout Button */}
         {isLoggedIn ? (
