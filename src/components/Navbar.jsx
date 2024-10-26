@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import ContactUs from 'ContactUs' ;
 import { Link } from 'react-router-dom';
 
 function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLoggedIn }) {
