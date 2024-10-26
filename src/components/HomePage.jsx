@@ -120,7 +120,7 @@ const HomePage = () => {
         setVendors(data);
         
         // Extract unique locations from the vendors data
-        const uniqueLocations = Array.from(new Set(data.flatMap(vendor => vendor.operating_regions))); // Flatten and get unique locations
+        const uniqueLocations = Array.from(new Set(data.map(vendor => vendor.operating_regions)));
         setLocations(['All', ...uniqueLocations]); // Add 'All' option
       })
       .catch(error => console.error(error));
@@ -129,7 +129,7 @@ const HomePage = () => {
   // Filter vendors based on search term and selected location
   const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
     const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = selectedLocation === 'All' || vendor.operating_regions.includes(selectedLocation);
+    const matchesLocation = selectedLocation === 'All' || vendor.operating_regions === selectedLocation;
     return matchesName && matchesLocation;
   }) : [];
 
@@ -207,7 +207,7 @@ const HomePage = () => {
               </div>
               <div className="p-4 bg-white flex-grow">
                 <p className="text-gray-700" style={{ fontSize: '1rem', fontWeight: '500' }}>
-                  📍 {vendor.operating_regions.join(', ')} {/* Display all regions */}
+                  📍 {vendor.operating_regions}
                 </p>
                 <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
               </div>
