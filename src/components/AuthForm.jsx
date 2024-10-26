@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 
 function AuthForm({ onClose }) {
-  const [isSignup, setIsSignup] = useState(true); // Toggle between login and signup
-  const [username, setUsername] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const toggleForm = () => {
+    setIsLogin(!isLogin);
+    setErrorMessage(''); // Clear errors when switching forms
+    setSuccessMessage('');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
-
-    // Check if in signup mode and passwords match
-    if (isSignup && password !== retypePassword) {
-      setError('Both passwords must be the same');
+    if (!email || !password) {
+      setErrorMessage('Please provide both email and password');
       return;
     }
 
-    // Updated URLs for login and signup
-    const url = isSignup 
-      ? 'https://bookmycater.freewebhostmost.com/signup.php' 
-      : 'https://bookmycater.freewebhostmost.com/login.php';
-      
-    const data = {
-      username: isSignup ? username : undefined, // Include username only on signup
-      email,
-      password,
-    };
+    if (!isLogin && password !== retypePassword) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
+
+    const url = isLogin
+      ? 'https://bookmycater.freewebhostmost.com/login.php'
+      : 'https://bookmycater.freewebhostmost.com/signup.php';
 
     try {
       const response = await fetch(url, {
@@ -37,49 +36,42 @@ function AuthForm({ onClose }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ email, password }),
       });
+
       const result = await response.json();
       if (result.success) {
-        setSuccess(result.message);
-        // Optionally, reset fields or perform any post-login/signup actions
-        if (isSignup) {
-          setUsername('');
-          setEmail('');
-          setPassword('');
-          setRetypePassword('');
-        }
+        setSuccessMessage(`${isLogin ? 'Login' : 'Signup'} successful!`);
+        // Close the form and change the button to Logout
+        onClose();
+        alert(`${isLogin ? 'Login' : 'Signup'} successful!`); // Success message
       } else {
-        setError(result.message);
+        setErrorMessage(result.message || 'An error occurred');
       }
     } catch (error) {
-      setError('An error occurred, please try again.');
+      setErrorMessage('An error occurred during the request');
     }
   };
 
   return (
-    <div className="auth-form">
-      {/* Close Button */}
-      <button onClick={onClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-        &times; {/* This represents an "X" icon */}
+    <div className="relative">
+      {/* Close icon */}
+      <button className="absolute top-2 right-2 text-gray-500" onClick={onClose}>
+        &times; {/* You can replace this with an SVG icon or an image */}
       </button>
-      <h2>{isSignup ? 'Sign Up' : 'Login'}</h2>
+
+      <h2 className="text-lg font-bold mb-4">{isLogin ? 'Login' : 'Signup'}</h2>
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
+      
       <form onSubmit={handleSubmit}>
-        {isSignup && (
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        )}
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="border p-2 mb-2 w-full"
         />
         <input
           type="password"
@@ -87,23 +79,28 @@ function AuthForm({ onClose }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="border p-2 mb-2 w-full"
         />
-        {isSignup && (
+        {!isLogin && (
           <input
             type="password"
             placeholder="Retype Password"
             value={retypePassword}
             onChange={(e) => setRetypePassword(e.target.value)}
             required
+            className="border p-2 mb-2 w-full"
           />
         )}
-        <button type="submit">{isSignup ? 'Sign Up' : 'Login'}</button>
-        <p className="error">{error && <span>{error}</span>}</p>
-        <p className="success">{success && <span>{success}</span>}</p>
+        <button type="submit" className="bg-blue-500 text-white p-2 w-full">
+          {isLogin ? 'Login' : 'Signup'}
+        </button>
       </form>
-      <button onClick={() => setIsSignup(!isSignup)}>
-        {isSignup ? 'Already have an account? Login' : "Don't have an account? Sign Up"}
-      </button>
+      <p className="mt-2">
+        {isLogin ? 'No account? ' : 'Already have an account? '}
+        <button onClick={toggleForm} className="text-blue-500 underline">
+          {isLogin ? 'Signup' : 'Login'}
+        </button>
+      </p>
     </div>
   );
 }
