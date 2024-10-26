@@ -125,7 +125,7 @@ const HomePage = () => {
         
         // Extract unique locations from the vendors data
         const uniqueLocations = Array.from(new Set(data.map(vendor => vendor.operating_regions)));
-        setLocations(['All', ...uniqueLocations]); // Add 'All' option
+        setLocations(['All Locations', ...uniqueLocations]); // Add 'All' option
       })
       .catch(error => console.error(error));
   }, []);
@@ -158,7 +158,7 @@ const HomePage = () => {
               border: '1px solid #ccc',
               borderRadius: '4px',
               padding: '8px 8px 8px 32px', // padding-left for icon space
-              width: '100%', // Full width to utilize the space
+              width: '50%', // Full width to utilize the space
             }}
           />
           <span
@@ -176,17 +176,36 @@ const HomePage = () => {
         </div>
 
         {/* Location Dropdown */}
-        <label htmlFor="location" className="ml-4">Select Location:</label>
+  
         <select
-          id="location"
-          value={selectedLocation}
-          onChange={handleLocationChange}
-          className="ml-2 border border-gray-300 rounded-md p-2"
-        >
-          {locations.map(location => (
-            <option key={location} value={location}>{location}</option>
-          ))}
-        </select>
+  id="location"
+  value={selectedLocation}
+  onChange={handleLocationChange}
+  style={{
+    marginLeft: '8px',
+    border: '1px solid #d1d5db', // Light gray border
+    borderRadius: '8px',
+    padding: '8px 16px', // Extra padding for a spacious look
+    backgroundColor: '#f9fafb', // Light background for contrast
+    color: '#333', // Dark text for readability
+    fontWeight: '500', // Slightly bolder text
+    appearance: 'none', // Hides default dropdown arrow
+    backgroundImage: 'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYgMi41TDkgNUw2IDcuNSIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==)',
+    backgroundPosition: 'right 12px center', // Positions custom arrow
+    backgroundRepeat: 'no-repeat',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease', // Smooth hover effect
+  }}
+  onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
+  onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
+>
+  {locations.map((location) => (
+    <option key={location} value={location}>
+      {location}
+    </option>
+  ))}
+</select>
+
       </div>
 
       {/* Vendor Listings */}
