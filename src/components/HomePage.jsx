@@ -195,7 +195,7 @@ const HomePage = () => {
     backgroundRepeat: 'no-repeat',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
-    width:30%;
+    width:30%,
   }}
   onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
   onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
