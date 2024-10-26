@@ -75,7 +75,7 @@ const HomePage = () => {
           <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
           <button className="flex items-center bg-yellow-400 text-white px-2 py-1 rounded-md text-sm">
             <span className="mr-1">⭐</span>
-            {vendor.average_rating}/5
+            {vendor.average_rating}
           </button>
         </div>
         <div className="p-4 bg-white flex-grow">
