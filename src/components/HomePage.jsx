@@ -26,15 +26,33 @@ const HomePage = () => {
       <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
 
       {/* Search Input */}
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search by vendor ..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border rounded p-2 w-half"
-        />
-      </div>
+      <div className="mb-4" style={{ position: 'relative' }}>
+  <input
+    type="text"
+    placeholder="Search by vendor ..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    style={{
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      padding: '8px 8px 8px 32px', // padding-left for icon space
+      width: '50%',
+    }}
+  />
+  <span
+    style={{
+      position: 'absolute',
+      left: '8px',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      color: '#888',
+      fontSize: '16px',
+    }}
+  >
+    🔍
+  </span>
+</div>
+
 
       {/* Vendor Listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
