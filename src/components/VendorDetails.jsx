@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const VendorDetails = () => {
   const { id } = useParams();
-  const [vendor, setVendor] = useState(null);
+  const [vendor, setVendor] = useState(null); 
 
   useEffect(() => {
     axios.get(`https://bookmycater.freewebhostmost.com/getVendorDetails.php?id=${id}`)
