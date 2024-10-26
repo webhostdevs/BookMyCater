@@ -1,7 +1,6 @@
 
 
 import React from 'react';
-import ContactUs from 'ContactUs' ;
 import { Link } from 'react-router-dom';
 
 function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLoggedIn }) {
@@ -21,8 +20,9 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
 
         </div>
-        <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">Contact</Link>  
-
+       <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">
+          Contact
+        </Link>  
         {/* Login/Logout Button */}
         {isLoggedIn ? (
           <button 
