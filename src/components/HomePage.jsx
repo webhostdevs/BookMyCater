@@ -190,12 +190,13 @@ const HomePage = () => {
     color: '#333', // Dark text for readability
     fontWeight: '500', // Slightly bolder text
     appearance: 'none', // Hides default dropdown arrow
-    backgroundImage: 'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYgMi41TDkgNUw2IDcuNSIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==)',
+    backgroundImage:
+      'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYgMi41TDkgNUw2IDcuNSIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==)',
     backgroundPosition: 'right 12px center', // Positions custom arrow
     backgroundRepeat: 'no-repeat',
     cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    width:30%
+    transition: 'all 0.3s ease', // Smooth hover effect
+    width: '30%', // Width as a string
   }}
   onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
   onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
@@ -206,6 +207,7 @@ const HomePage = () => {
     </option>
   ))}
 </select>
+
 
       </div>
 
