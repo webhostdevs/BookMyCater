@@ -33,7 +33,7 @@ const VendorDetails = () => {
           {/* Image container */}
           <div className="detail_img w-full max-w-9xl h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg shadow-lg mb-4">
             <img
-              src="https://images.unsplash.com/photo-1544894079-e81a9eb1da8b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
+              src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
               alt="Catering Service"
               className="w-full h-full object-cover"
             />
@@ -57,7 +57,7 @@ const VendorDetails = () => {
             <div className="flex flex-col sm:flex-row items-center justify-between mt-6 gap-4">
               <div className="flex items-center gap-2">
                 <div className="Rating bg-black text-white p-3 rounded-full text-lg font-semibold">
-                  4.5
+                  {vendor.average_rating}
                 </div>
                 <p className="text-sm sm:text-base">4 Reviews</p>
               </div>
@@ -72,13 +72,13 @@ const VendorDetails = () => {
             <p className="text-lg font-medium text-gray-700">
               Plate Starting from
             </p>
-            <h4 className="text-3xl font-bold text-gray-800">Rs. {vendor.pricing_per_plate}</h4>
+            <h4 className="text-xl font-bold text-gray-800">Rs. {vendor.pricing_per_plate}</h4>
           </div>
           <div className="Starting_price flex flex-col sm:flex-row items-center justify-between text-center sm:text-left mb-6">
             <p className="text-lg font-medium text-gray-700">
               Event Starting from
             </p>
-            <h4 className="text-3xl font-bold text-gray-800">Rs. {vendor.pricing_per_event}</h4>
+            <h4 className="text-xl font-bold text-gray-800">Rs. {vendor.pricing_per_event}</h4>
           </div>
 
           {/* Buttons */}
