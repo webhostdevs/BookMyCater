@@ -133,7 +133,7 @@ const HomePage = () => {
   // Filter vendors based on search term and selected location
   const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
     const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = selectedLocation === 'All' || vendor.operating_regions === selectedLocation;
+    const matchesLocation = selectedLocation === 'All Locations' || vendor.operating_regions === selectedLocation;
     return matchesName && matchesLocation;
   }) : [];
 
