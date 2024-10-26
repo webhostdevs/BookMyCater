@@ -78,7 +78,7 @@ const HomePage = () => {
             {vendor.rating}/5
           </button>
         </div>
-        <div className="p-4 bg-gray-100 flex-grow">
+        <div className="p-4 bg-white flex-grow">
           <p>📍{vendor.operating_regions}</p>
           <p className="mt-1">Per Plate: ₹{vendor.pricing_per_plate}</p>
           <p>Per Event: ₹{vendor.pricing_per_event}</p>
