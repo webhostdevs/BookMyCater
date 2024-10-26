@@ -15,7 +15,7 @@ function AuthForm({ onClose }) {
       return;
     }
 
-    const url = isLogin ? 'http://localhost/api/login.php' : 'http://localhost/api/signup.php';
+    const url = isLogin ? 'https://bookmycater.freewebhostmost.com/login.php' : 'https://bookmycater.freewebhostmost.com/signup.php';
 
     try {
       const response = await fetch(url, {
