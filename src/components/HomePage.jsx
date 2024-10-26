@@ -122,7 +122,7 @@ const HomePage = () => {
         setVendors(data);
         
         // Extract unique locations from the vendors data
-        const uniqueLocations = Array.from(new Set(data.map(vendor => vendor.operating_regions[])));
+        const uniqueLocations = Array.from(new Set(data.flatMap(vendor => vendor.operating_regions))); // Flatten and get unique locations
         setLocations(['All', ...uniqueLocations]); // Add 'All' option
       })
       .catch(error => console.error(error));
@@ -209,7 +209,7 @@ const HomePage = () => {
               </div>
               <div className="p-4 bg-white flex-grow">
                 <p className="text-gray-700" style={{ fontSize: '1rem', fontWeight: '500' }}>
-                  📍 {vendor.operating_regions}
+                  📍 {vendor.operating_regions.join(', ')} {/* Display all regions */}
                 </p>
                 <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
               </div>
