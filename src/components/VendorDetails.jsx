@@ -15,16 +15,7 @@ const VendorDetails = () => {
   if (!vendor) return <p>Loading...</p>;
 
   return (
-    // <div className="p-6">
-   //  <h2 className="text-3xl font-bold mb-4">{vendor.company_name}</h2> m
-      // <p>Contact Person: {vendor.contact_person}</p>
-    //   <p>Phone: {vendor.phone_number}</p>
-    //   <p>Email: {vendor.email_address}</p>
-      // <p>Address: {vendor.business_address}</p>    m
-    //   <p>Operating Regions: {vendor.operating_regions}</p>  m
-    //   <p>Per Plate Price: ₹{vendor.pricing_per_plate}</p>  m
-    //   <p>Per Event Price: ₹{vendor.pricing_per_event}</p> m
-    // </div>
+   
 
         <div className="w-full bg-gray-50 p-8 max-[425px]:p-0 ">
       <div className="detail flex flex-col lg:flex-row gap-8 lg:gap-16 items-start p-4 sm:p-6 lg:p-8 justify-between ">
@@ -50,7 +41,7 @@ const VendorDetails = () => {
                 href="#home"
                 className="text-blue-300 underline mt-4 inline-block hover:text-blue-400"
               >
-                Contact
+                {vendor.phone_number}
               </a>
             </div>
 
@@ -147,12 +138,10 @@ const VendorDetails = () => {
         </p>
         <div className="text-gray-700 space-y-4">
           <p>
-            <b>Cuisines offered:</b> Continental, Italian, Indian, Chinese, and
-            more.
+            <b>Dietary Options:</b> {vendor.dietary_accommodations}
           </p>
           <p>
-            <b>Services offered:</b> Custom menu design, live food counters,
-            decorations, and staff service.
+            <b>Services offered:</b> {vendor.services}
           </p>
           <p>
             <b>Areas covered:</b> {vendor.operating_regions}
