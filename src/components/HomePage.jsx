@@ -36,7 +36,7 @@ const HomePage = () => {
       border: '1px solid #ccc',
       borderRadius: '4px',
       padding: '8px 8px 8px 32px', // padding-left for icon space
-      width: '40%',
+      width: '30%',
     }}
   />
   <span
