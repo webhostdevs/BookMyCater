@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
 
 function Navbar({ searchTerm, setSearchTerm }) {
   return (
@@ -22,6 +23,12 @@ function Navbar({ searchTerm, setSearchTerm }) {
         <Link to="/" className="text-gray-700 hover:text-black transition">Home</Link>
         <Link to="/about" className="text-gray-700 hover:text-black transition">About</Link>
         <Link to="/contact" className="text-gray-700 hover:text-black transition">Contact</Link>
+        <Link
+          to="/login"
+          className="flex items-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition"
+        >
+          <FaUser className="mr-2" /> Login
+        </Link>
       </div>
     </nav>
   );
