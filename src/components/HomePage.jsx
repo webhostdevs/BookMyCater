@@ -24,11 +24,15 @@ const HomePage = () => {
   }, []);
 
   // Filter vendors based on search term and selected location
-  const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
-    const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = selectedLocation === 'All Locations' || vendor.operating_regions === selectedLocation;
-    return matchesName && matchesLocation;
-  }) : [];
+  const filteredVendors = Array.isArray(vendors)
+  ? vendors.filter(vendor => {
+      const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesLocation =
+        selectedLocation === 'All Locations' ||
+        vendor.operating_regions.split(',').map(loc => loc.trim()).includes(selectedLocation);
+      return matchesName && matchesLocation;
+    })
+  : [];
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
