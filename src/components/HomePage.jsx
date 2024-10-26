@@ -208,7 +208,10 @@ const HomePage = () => {
               <div className="flex justify-between items-center mt-2">
                 <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
                 <button className="flex items-center bg-green-500 text-white px-2 py-1 rounded-md text-sm">
-                  <span className="mr-1" style={{ fontSize:18px}} ><FaStar /></span>
+                 <span className="mr-1" style={{ fontSize: 18 }}>
+    <FaStar />
+</span>
+
                   {vendor.average_rating}
                 </button>
               </div>
