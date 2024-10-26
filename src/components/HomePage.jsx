@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+{/*import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const HomePage = () => {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
 
-      {/* Search Input */}
+
       <div className="mb-4" style={{ position: 'relative' }}>
   <input
     type="text"
@@ -54,7 +54,7 @@ const HomePage = () => {
 </div>
 
 
-      {/* Vendor Listings */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   {filteredVendors.length > 0 ? (
     filteredVendors.map((vendor) => (
@@ -70,7 +70,7 @@ const HomePage = () => {
             className="w-full h-full object-cover rounded-t-md"
           />
         </div>
-        {/* New Review Button below the image */}
+  
         <div className="flex justify-between items-center mt-2">
           <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
           <button className="flex items-center bg-yellow-400 text-white px-2 py-1 rounded-md text-sm">
@@ -83,7 +83,7 @@ const HomePage = () => {
         📍 {vendor.operating_regions}
       </p>
           
-{/*           <p className="mt-1">Per Plate: ₹{vendor.pricing_per_plate}</p> */}
+
           <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
         </div>
       </Link>
@@ -93,6 +93,136 @@ const HomePage = () => {
   )}
 </div>
 
+    </div>
+  );
+};
+
+export default HomePage;
+*/}
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+const HomePage = () => {
+  const [vendors, setVendors] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+
+  useEffect(() => {
+    // Fetch all vendors on component mount
+    axios.get('https://bookmycater.freewebhostmost.com/getVendors.php')
+      .then(response => {
+        const data = Array.isArray(response.data) ? response.data : []; // Ensure it's an array
+        setVendors(data);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+  // List of locations in Hyderabad
+  const locations = [
+    'Banjara Hills',
+    'Uppal',
+    'Secunderabad',
+    'Dilsukhnagar',
+    'Jubilee Hills',
+    'Madhapur',
+    'Gachibowli',
+    'KPHB',
+    'All', // Option to show all vendors
+  ];
+
+  // Filter vendors based on search term and selected location
+  const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
+    const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesLocation = selectedLocation === 'All' || vendor.operating_regions === selectedLocation;
+    return matchesName && matchesLocation;
+  }) : [];
+
+  const handleLocationChange = (event) => {
+    setSelectedLocation(event.target.value);
+  };
+
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
+
+      {/* Search Input */}
+      <div className="mb-4" style={{ position: 'relative' }}>
+        <input
+          type="text"
+          placeholder="Search by vendor ..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            padding: '8px 8px 8px 32px', // padding-left for icon space
+            width: '30%',
+          }}
+        />
+        <span
+          style={{
+            position: 'absolute',
+            left: '8px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: '#888',
+            fontSize: '16px',
+          }}
+        >
+          🔍
+        </span>
+      </div>
+
+      {/* Location Dropdown */}
+      <label htmlFor="location" className="block mb-2">Select Location:</label>
+      <select
+        id="location"
+        value={selectedLocation}
+        onChange={handleLocationChange}
+        className="mb-4 border border-gray-300 rounded-md p-2"
+      >
+        <option value="">-- Select Location --</option>
+        {locations.map(location => (
+          <option key={location} value={location}>{location}</option>
+        ))}
+      </select>
+
+      {/* Vendor Listings */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredVendors.length > 0 ? (
+          filteredVendors.map((vendor) => (
+            <Link
+              to={`/vendor/${vendor.id}`}
+              key={vendor.id}
+              className="shadow-lg p-4 bg-white rounded-md flex flex-col overflow-hidden transition-transform duration-200 transform hover:scale-105"
+            >
+              <div className="h-48">
+                <img
+                  src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
+                  alt={vendor.company_name}
+                  className="w-full h-full object-cover rounded-t-md"
+                />
+              </div>
+              <div className="flex justify-between items-center mt-2">
+                <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
+                <button className="flex items-center bg-yellow-400 text-white px-2 py-1 rounded-md text-sm">
+                  <span className="mr-1">⭐</span>
+                  {vendor.average_rating}
+                </button>
+              </div>
+              <div className="p-4 bg-white flex-grow">
+                <p className="text-gray-700" style={{ fontSize: '1rem', fontWeight: '500' }}>
+                  📍 {vendor.operating_regions}
+                </p>
+                <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p className="text-gray-500">No vendors found for the selected criteria.</p>
+        )}
+      </div>
     </div>
   );
 };
