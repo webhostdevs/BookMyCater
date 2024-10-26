@@ -146,7 +146,7 @@ const HomePage = () => {
       <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
 
       {/* Search and Location Container */}
-      <div className="flex justify-between mb-4" style={{ alignItems: 'center' }}>
+      <div className="flex mb-4" style={{ alignItems: 'center' }}>
         {/* Search Input */}
         <div style={{ position: 'relative', flex: 1 }}>
           <input
@@ -194,7 +194,8 @@ const HomePage = () => {
     backgroundPosition: 'right 12px center', // Positions custom arrow
     backgroundRepeat: 'no-repeat',
     cursor: 'pointer',
-    transition: 'all 0.3s ease', // Smooth hover effect
+    transition: 'all 0.3s ease',
+    width:30%;
   }}
   onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
   onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
