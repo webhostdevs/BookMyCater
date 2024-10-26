@@ -81,7 +81,7 @@ const HomePage = () => {
         <div className="p-4 bg-white flex-grow">
           <p class="text-grey">📍{vendor.operating_regions}</p>
 {/*           <p className="mt-1">Per Plate: ₹{vendor.pricing_per_plate}</p> */}
-          <h2 className="text-lg font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
+          <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
         </div>
       </Link>
     ))
