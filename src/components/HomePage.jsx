@@ -106,8 +106,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
-
 
 const HomePage = () => {
   const [vendors, setVendors] = useState([]);
@@ -207,7 +205,7 @@ const HomePage = () => {
               <div className="flex justify-between items-center mt-2">
                 <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
                 <button className="flex items-center bg-green-500 text-white px-2 py-1 rounded-md text-sm">
-                  <span className="mr-1" ><FontAwesomeIcon icon={faStarSolid} /></span>
+                  <span className="mr-1" ><FontAwesomeIcon icon="fa-solid fa-star" style={{color: "#ffffff",}} /></span>
                   {vendor.average_rating}
                 </button>
               </div>
