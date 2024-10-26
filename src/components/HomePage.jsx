@@ -67,11 +67,7 @@ const HomePage = () => {
           >
             🔍
           </span>
-        </div>
-
-        {/* Location Dropdown */}
-  
-        <select
+           <select
   id="location"
   value={selectedLocation}
   onChange={handleLocationChange}
@@ -100,6 +96,11 @@ const HomePage = () => {
           ))}
         </select>
 
+        </div>
+
+        {/* Location Dropdown */}
+  
+       
 
 </div>
 
