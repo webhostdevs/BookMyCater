@@ -99,7 +99,7 @@ const HomePage = () => {
 
 export default HomePage;
 */}
-  
+
 
 
 import React, { useState, useEffect } from 'react';
@@ -120,26 +120,18 @@ const HomePage = () => {
         setVendors(data);
         
         // Extract unique locations from the vendors data
-        const uniqueLocations = Array.from(new Set(data.flatMap(vendor => {
-          if (Array.isArray(vendor.operating_regions)) {
-            return vendor.operating_regions; // Return the array if it's valid
-          } else if (typeof vendor.operating_regions === 'string') {
-            return [vendor.operating_regions]; // If it's a string, wrap it in an array
-          }
-          return []; // Return an empty array if neither
-        }))); // Flatten and get unique locations
-        
+        const uniqueLocations = Array.from(new Set(data.flatMap(vendor => vendor.operating_regions))); // Flatten and get unique locations
         setLocations(['All', ...uniqueLocations]); // Add 'All' option
       })
       .catch(error => console.error(error));
   }, []);
 
   // Filter vendors based on search term and selected location
-  const filteredVendors = vendors.filter(vendor => {
+  const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
     const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = selectedLocation === 'All' || (Array.isArray(vendor.operating_regions) && vendor.operating_regions.includes(selectedLocation));
+    const matchesLocation = selectedLocation === 'All' || vendor.operating_regions.includes(selectedLocation);
     return matchesName && matchesLocation;
-  });
+  }) : [];
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
@@ -215,7 +207,7 @@ const HomePage = () => {
               </div>
               <div className="p-4 bg-white flex-grow">
                 <p className="text-gray-700" style={{ fontSize: '1rem', fontWeight: '500' }}>
-                  📍 {Array.isArray(vendor.operating_regions) ? vendor.operating_regions.join(', ') : 'Location not available'}
+                  📍 {vendor.operating_regions.join(', ')} {/* Display all regions */}
                 </p>
                 <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
               </div>
