@@ -106,6 +106,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import { CiStar } from "react-icons/ci";
+
 const HomePage = () => {
   const [vendors, setVendors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -141,46 +143,49 @@ const HomePage = () => {
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
 
-      {/* Search Input */}
-      <div className="mb-4" style={{ position: 'relative' }}>
-        <input
-          type="text"
-          placeholder="Search by vendor ..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            padding: '8px 8px 8px 32px', // padding-left for icon space
-            width: '30%',
-          }}
-        />
-        <span
-          style={{
-            position: 'absolute',
-            left: '8px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            color: '#888',
-            fontSize: '16px',
-          }}
-        >
-          🔍
-        </span>
-      </div>
+      {/* Search and Location Container */}
+      <div className="flex justify-between mb-4" style={{ alignItems: 'center' }}>
+        {/* Search Input */}
+        <div style={{ position: 'relative', flex: 1 }}>
+          <input
+            type="text"
+            placeholder="Search by vendor ..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              padding: '8px 8px 8px 32px', // padding-left for icon space
+              width: '100%', // Full width to utilize the space
+            }}
+          />
+          <span
+            style={{
+              position: 'absolute',
+              left: '8px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: '#888',
+              fontSize: '16px',
+            }}
+          >
+            🔍
+          </span>
+        </div>
 
-      {/* Location Dropdown */}
-      <label htmlFor="location" className="block mb-2">Select Location:</label>
-      <select
-        id="location"
-        value={selectedLocation}
-        onChange={handleLocationChange}
-        className="mb-4 border border-gray-300 rounded-md p-2"
-      >
-        {locations.map(location => (
-          <option key={location} value={location}>{location}</option>
-        ))}
-      </select>
+        {/* Location Dropdown */}
+        <label htmlFor="location" className="ml-4">Select Location:</label>
+        <select
+          id="location"
+          value={selectedLocation}
+          onChange={handleLocationChange}
+          className="ml-2 border border-gray-300 rounded-md p-2"
+        >
+          {locations.map(location => (
+            <option key={location} value={location}>{location}</option>
+          ))}
+        </select>
+      </div>
 
       {/* Vendor Listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -201,7 +206,7 @@ const HomePage = () => {
               <div className="flex justify-between items-center mt-2">
                 <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
                 <button className="flex items-center bg-yellow-400 text-white px-2 py-1 rounded-md text-sm">
-                  <span className="mr-1">⭐</span>
+                  <span className="mr-1"><CiStar /></span>
                   {vendor.average_rating}
                 </button>
               </div>
