@@ -98,15 +98,14 @@ const HomePage = () => {
 };
 
 export default HomePage;
-*/}
-import React, { useState, useEffect } from 'react';
+*/}import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const [vendors, setVendors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('All'); // Default to 'All'
 
   useEffect(() => {
     // Fetch all vendors on component mount
@@ -182,7 +181,6 @@ const HomePage = () => {
         onChange={handleLocationChange}
         className="mb-4 border border-gray-300 rounded-md p-2"
       >
-        <option value="">-- Select Location --</option>
         {locations.map(location => (
           <option key={location} value={location}>{location}</option>
         ))}
