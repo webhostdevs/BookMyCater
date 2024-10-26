@@ -100,7 +100,6 @@ const HomePage = () => {
           ))}
         </select>
   ))}
-</select>
 
 </div>
 
