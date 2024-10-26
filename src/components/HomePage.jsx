@@ -95,12 +95,15 @@ const HomePage = () => {
   onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
   onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
 >
-  {[...new Set(locations.flatMap(location => location.split(',')))]
-  .map((uniqueLocation) => (
-    <option key={uniqueLocation.trim()} value={uniqueLocation.trim()}>
-      {uniqueLocation.trim()}
+  {[...new Set(
+    locations
+      .flatMap(location => location.split(','))
+      .map(loc => loc.trim())
+  )].map(uniqueLocation => (
+    <option key={uniqueLocation} value={uniqueLocation}>
+      {uniqueLocation}
     </option>
-))}
+  ))}
 
         </select>
 
