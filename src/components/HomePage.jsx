@@ -102,7 +102,6 @@ export default HomePage;
   
 
 
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -122,19 +121,25 @@ const HomePage = () => {
         
         // Extract unique locations from the vendors data
         const uniqueLocations = Array.from(new Set(data.flatMap(vendor => {
-          return Array.isArray(vendor.operating_regions) ? vendor.operating_regions : []; // Ensure it's an array
+          if (Array.isArray(vendor.operating_regions)) {
+            return vendor.operating_regions; // Return the array if it's valid
+          } else if (typeof vendor.operating_regions === 'string') {
+            return [vendor.operating_regions]; // If it's a string, wrap it in an array
+          }
+          return []; // Return an empty array if neither
         }))); // Flatten and get unique locations
+        
         setLocations(['All', ...uniqueLocations]); // Add 'All' option
       })
       .catch(error => console.error(error));
   }, []);
 
   // Filter vendors based on search term and selected location
-  const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
+  const filteredVendors = vendors.filter(vendor => {
     const matchesName = vendor.company_name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesLocation = selectedLocation === 'All' || (Array.isArray(vendor.operating_regions) && vendor.operating_regions.includes(selectedLocation));
     return matchesName && matchesLocation;
-  }) : [];
+  });
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
