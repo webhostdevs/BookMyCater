@@ -31,13 +31,8 @@ function App() {
         {showAuthForm && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <AuthForm />
-              <button
-                onClick={toggleAuthForm}
-                className="mt-4 w-full bg-red-500 text-white p-2 rounded hover:bg-red-600"
-              >
-                Close
-              </button>
+              <AuthForm onClose={toggleAuthForm} />
+              {/* Remove the close button here since we have the 'X' in AuthForm */}
             </div>
           </div>
         )}
