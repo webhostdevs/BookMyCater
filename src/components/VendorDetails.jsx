@@ -22,8 +22,8 @@ const VendorDetails = () => {
       <p>Email: {vendor.email_address}</p>
       <p>Address: {vendor.business_address}</p>
       <p>Operating Regions: {vendor.operating_regions}</p>
-      <p>Per Plate Price: ${vendor.pricing_per_plate}</p>
-      <p>Per Event Price: ${vendor.pricing_per_event}</p>
+      <p>Per Plate Price: ₹{vendor.pricing_per_plate}</p>
+      <p>Per Event Price: ₹{vendor.pricing_per_event}</p>
       {/* Add more fields as needed */}
     </div>
   );
