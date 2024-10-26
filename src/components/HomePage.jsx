@@ -146,70 +146,67 @@ const HomePage = () => {
       <h1 className="text-2xl font-bold mb-4">Welcome to Our Catering Service</h1>
 
       {/* Search and Location Container */}
-      <div className="flex mb-4" style={{ alignItems: 'center' }}>
-        {/* Search Input */}
-        <div style={{ position: 'relative', flex: 1 }}>
-          <input
-            type="text"
-            placeholder="Search by vendor ..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              padding: '8px 8px 8px 32px', // padding-left for icon space
-              width: '50%', // Full width to utilize the space
-            }}
-          />
-          <span
-            style={{
-              position: 'absolute',
-              left: '8px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: '#888',
-              fontSize: '16px',
-            }}
-          >
-            🔍
-          </span>
-        </div>
+<div className="flex items-center mb-4 space-x-4">
+  {/* Search Input */}
+  <div style={{ position: 'relative', flex: 1 }}>
+    <input
+      type="text"
+      placeholder="Search by vendor ..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      style={{
+        border: '1px solid #ccc',
+        borderRadius: '4px',
+        padding: '8px 8px 8px 32px', // padding-left for icon space
+        width: '100%', // Takes full width within flex container
+      }}
+    />
+    <span
+      style={{
+        position: 'absolute',
+        left: '8px',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        color: '#888',
+        fontSize: '16px',
+      }}
+    >
+      🔍
+    </span>
+  </div>
 
-        {/* Location Dropdown */}
-  
-        <select
-  id="location"
-  value={selectedLocation}
-  onChange={handleLocationChange}
-  style={{
-    marginLeft: '8px',
-    border: '1px solid #d1d5db', // Light gray border
-    borderRadius: '8px',
-    padding: '8px 16px', // Extra padding for a spacious look
-    backgroundColor: '#f9fafb', // Light background for contrast
-    color: '#333', // Dark text for readability
-    fontWeight: '500', // Slightly bolder text
-    appearance: 'none', // Hides default dropdown arrow
-    backgroundImage:
-      'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYgMi41TDkgNUw2IDcuNSIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==)',
-    backgroundPosition: 'right 12px center', // Positions custom arrow
-    backgroundRepeat: 'no-repeat',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease', // Smooth hover effect
-    width: '30%', // Width as a string
-  }}
-  onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
-  onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
->
-  {locations.map((location) => (
-    <option key={location} value={location}>
-      {location}
-    </option>
-  ))}
-</select>
+  {/* Location Dropdown */}
+  <select
+    id="location"
+    value={selectedLocation}
+    onChange={handleLocationChange}
+    style={{
+      border: '1px solid #d1d5db', // Light gray border
+      borderRadius: '8px',
+      padding: '8px 16px', // Extra padding for a spacious look
+      backgroundColor: '#f9fafb', // Light background for contrast
+      color: '#333', // Dark text for readability
+      fontWeight: '500', // Slightly bolder text
+      appearance: 'none', // Hides default dropdown arrow
+      backgroundImage:
+        'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE2IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYgMi41TDkgNUw2IDcuNSIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==)',
+      backgroundPosition: 'right 12px center', // Positions custom arrow
+      backgroundRepeat: 'no-repeat',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease', // Smooth hover effect
+      width: '30%', // Width as a string
+    }}
+    onFocus={(e) => (e.target.style.borderColor = '#6366f1')} // Indigo border on focus
+    onBlur={(e) => (e.target.style.borderColor = '#d1d5db')} // Gray border on blur
+  >
+    {locations.map((location) => (
+      <option key={location} value={location}>
+        {location}
+      </option>
+    ))}
+  </select>
+</div>
 
-
-      </div>
 
       {/* Vendor Listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
