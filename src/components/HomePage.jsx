@@ -113,7 +113,7 @@ import { FaStar } from "react-icons/fa";
 const HomePage = () => {
   const [vendors, setVendors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('All'); // Default to 'All'
+  const [selectedLocation, setSelectedLocation] = useState('All Locations'); // Default to 'All'
   const [locations, setLocations] = useState([]); // State for locations
 
   useEffect(() => {
