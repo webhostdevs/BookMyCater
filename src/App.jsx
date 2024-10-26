@@ -4,7 +4,7 @@ import HomePage from './components/HomePage';
 import VendorDetails from './components/VendorDetails';
 import Navbar from './components/Navbar';
 import AuthForm from './components/AuthForm';
-import ContactUs from './components/ContactUs';
+import ContactForm from './components/ContactUs';
 import './App.css';
 
 function App() {
@@ -30,8 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage searchTerm={searchTerm} />} />
           <Route path="/vendor/:id" element={<VendorDetails />} />
-           
-           <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/ContactUs" element={<ContactForm />} />
 
         </Routes>
 
