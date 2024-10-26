@@ -1,87 +1,87 @@
 import React, { useState } from 'react';
+import { FaTimes } from 'react-icons/fa';
 
-function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+function AuthForm({ onClose }) {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [retypePassword, setRetypePassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true); // Toggle between login and signup
+  const [message, setMessage] = useState('');
 
-  // Toggle between login and signup forms
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-    setFormData({ username: '', email: '', password: '' }); // Clear form data on toggle
-  };
+  const handleAuth = async () => {
+    if (!isLogin && password !== retypePassword) {
+      setMessage("Passwords do not match!");
+      return;
+    }
 
-  // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const url = isLogin ? 'http://localhost/api/login.php' : 'http://localhost/api/signup.php';
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isLogin) {
-      console.log('Logging in with:', formData);
-      // Add login logic here
-    } else {
-      console.log('Signing up with:', formData);
-      // Add signup logic here
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, email, password })
+      });
+      const data = await response.json();
+      setMessage(data.message);
+      if (data.success) {
+        // Handle successful login/signup
+        onClose(); // Close the form after successful action
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again.');
     }
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-4">
+    <div className="auth-form bg-white p-6 rounded shadow-md relative w-96">
+      <FaTimes
+        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
+        onClick={onClose}
+      />
+      <h2 className="text-xl font-semibold mb-4">{isLogin ? 'Login' : 'Sign Up'}</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="p-2 border rounded mb-2 w-full"
+      />
+      {!isLogin && (
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="p-2 border rounded mb-2 w-full"
+        />
+      )}
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="p-2 border rounded mb-2 w-full"
+      />
+      {!isLogin && (
+        <input
+          type="password"
+          placeholder="Retype Password"
+          value={retypePassword}
+          onChange={(e) => setRetypePassword(e.target.value)}
+          className="p-2 border rounded mb-2 w-full"
+        />
+      )}
+      <button onClick={handleAuth} className="bg-blue-500 text-white px-4 py-2 rounded mt-2 w-full">
         {isLogin ? 'Login' : 'Sign Up'}
-      </h2>
-      <form onSubmit={handleSubmit}>
-        {!isLogin && (
-          <div className="mb-4">
-            <label className="block text-gray-700">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-              required
-            />
-          </div>
-        )}
-        <div className="mb-4">
-          <label className="block text-gray-700">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-        >
-          {isLogin ? 'Login' : 'Sign Up'}
-        </button>
-      </form>
-      <button
-        onClick={toggleForm}
-        className="mt-4 text-blue-500 underline w-full text-center"
-      >
+      </button>
+      <button onClick={() => setIsLogin(!isLogin)} className="text-blue-500 mt-2 w-full">
         {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
       </button>
+      <p className="text-red-500 mt-2">{message}</p>
     </div>
   );
 }
