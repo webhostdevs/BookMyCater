@@ -62,9 +62,19 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
 
         {/* Login/Logout Button */}
         {isLoggedIn ? (
-          <button onClick={handleLogout} className="text-gray-700 hover:text-black transition">Logout</button>
+          <button 
+            onClick={handleLogout} 
+            className="flex items-center text-gray-700 hover:text-black transition"
+          >
+            <i className="fas fa-sign-out-alt mr-1"></i> Logout
+          </button>
         ) : (
-          <button onClick={toggleAuthForm} className="text-gray-700 hover:text-black transition">Login</button>
+          <button 
+            onClick={toggleAuthForm} 
+            className="flex items-center text-gray-700 hover:text-black transition"
+          >
+            <i className="fas fa-user mr-1"></i> Login
+          </button>
         )}
       </div>
     </nav>
@@ -72,4 +82,3 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
 }
 
 export default Navbar;
-
