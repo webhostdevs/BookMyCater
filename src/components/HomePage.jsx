@@ -56,32 +56,40 @@ const HomePage = () => {
 
       {/* Vendor Listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredVendors.length > 0 ? (
-          filteredVendors.map(vendor => (
-            <Link
-              to={`/vendor/${vendor.id}`}
-              key={vendor.id}
-              className="shadow-lg p-4 bg-white rounded-md flex flex-col overflow-hidden transition-transform duration-200 transform hover:scale-105"
-            >
-              <div className="h-48">
-                <img
-                  src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
-                  alt={vendor.company_name}
-                  className="w-full h-full object-cover rounded-t-md"
-                />
-              </div>
-              <div className="p-4 bg-gray-100 flex-grow">
-                <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
-                <p>📍{vendor.operating_regions}</p>
-                <p className="mt-1">Per Plate: ₹{vendor.pricing_per_plate}</p>
-                <p>Per Event: ₹{vendor.pricing_per_event}</p>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <p className="text-gray-500">No vendors found for the selected criteria.</p>
-        )}
-      </div>
+  {filteredVendors.length > 0 ? (
+    filteredVendors.map((vendor) => (
+      <Link
+        to={`/vendor/${vendor.id}`}
+        key={vendor.id}
+        className="shadow-lg p-4 bg-white rounded-md flex flex-col overflow-hidden transition-transform duration-200 transform hover:scale-105"
+      >
+        <div className="h-48">
+          <img
+            src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
+            alt={vendor.company_name}
+            className="w-full h-full object-cover rounded-t-md"
+          />
+        </div>
+        {/* New Review Button below the image */}
+        <div className="flex justify-between items-center mt-2">
+          <h2 className="text-lg font-semibold">{vendor.company_name}</h2>
+          <button className="flex items-center bg-yellow-400 text-white px-2 py-1 rounded-md text-sm">
+            <span className="mr-1">⭐</span>
+            {vendor.rating}/5
+          </button>
+        </div>
+        <div className="p-4 bg-gray-100 flex-grow">
+          <p>📍{vendor.operating_regions}</p>
+          <p className="mt-1">Per Plate: ₹{vendor.pricing_per_plate}</p>
+          <p>Per Event: ₹{vendor.pricing_per_event}</p>
+        </div>
+      </Link>
+    ))
+  ) : (
+    <p className="text-gray-500">No vendors found for the selected criteria.</p>
+  )}
+</div>
+
     </div>
   );
 };
