@@ -79,7 +79,9 @@ const HomePage = () => {
           </button>
         </div>
         <div className="p-4 bg-white flex-grow">
-          
+          <p className="text-gray-700" style={{ fontSize: '1.125rem', fontWeight: '600' }}>
+        📍 {vendor.operating_regions}
+      </p>
           <p className="text-grey-700">📍{vendor.operating_regions}</p>
 {/*           <p className="mt-1">Per Plate: ₹{vendor.pricing_per_plate}</p> */}
           <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
