@@ -99,7 +99,7 @@ const HomePage = () => {
        <option key={location} value={location}>{location}</option>
           ))}
         </select>
-  ))}
+
 
 </div>
 
