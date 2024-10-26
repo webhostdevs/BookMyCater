@@ -147,7 +147,7 @@ const HomePage = () => {
 
       {/* Search and Location Container */}
 {/* Search and Location Container */}
-      <div className="mb-4" style={{ alignItems: 'center' }}>
+      <div className="flex justify-start mb-4" style={{ alignItems: 'center' }}>
         {/* Search Input */}
         <div style={{ position: 'relative', flex: 1 }}>
           <input
