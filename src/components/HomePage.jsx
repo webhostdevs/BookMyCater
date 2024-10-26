@@ -98,7 +98,13 @@ const HomePage = () => {
 };
 
 export default HomePage;
-*/}import React, { useState, useEffect } from 'react';
+*/}
+  
+
+
+
+
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -106,6 +112,7 @@ const HomePage = () => {
   const [vendors, setVendors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('All'); // Default to 'All'
+  const [locations, setLocations] = useState([]); // State for locations
 
   useEffect(() => {
     // Fetch all vendors on component mount
@@ -113,22 +120,13 @@ const HomePage = () => {
       .then(response => {
         const data = Array.isArray(response.data) ? response.data : []; // Ensure it's an array
         setVendors(data);
+        
+        // Extract unique locations from the vendors data
+        const uniqueLocations = Array.from(new Set(data.map(vendor => vendor.operating_regions)));
+        setLocations(['All', ...uniqueLocations]); // Add 'All' option
       })
       .catch(error => console.error(error));
   }, []);
-
-  // List of locations in Hyderabad
-  const locations = [
-    'Banjara Hills',
-    'Uppal',
-    'Secunderabad',
-    'Dilsukhnagar',
-    'Jubilee Hills',
-    'Madhapur',
-    'Gachibowli',
-    'KPHB',
-    'All', // Option to show all vendors
-  ];
 
   // Filter vendors based on search term and selected location
   const filteredVendors = Array.isArray(vendors) ? vendors.filter(vendor => {
@@ -222,6 +220,12 @@ const HomePage = () => {
         )}
       </div>
     </div>
+  );
+};
+
+export default HomePage;
+
+
   );
 };
 
