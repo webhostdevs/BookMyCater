@@ -73,7 +73,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
             onClick={toggleAuthForm} 
             className="flex items-center bg-black text-white-200 hover:text-white transition"
           >
-            <i className="fas fa-user mr-1"></i> Login
+            <i className="fas fa-user mr-2"></i> Login
           </button>
         )}
       </div>
