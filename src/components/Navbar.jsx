@@ -27,8 +27,8 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
           /> 
           <button className="bg-gray-600 text-white px-4 py-2">Search</button>  */}
         </div>
-        <Link to="/" className="text-gray-700 hover:text-black transition">Home</Link>
-{/*         <Link to="/about" className="text-gray-700 hover:text-black transition">About</Link> */}
+{/*         <Link to="/" className="text-gray-700 hover:text-black transition">Home</Link>
+        <Link to="/about" className="text-gray-700 hover:text-black transition">About</Link> */}
         <Link to="/contact" className="text-gray-700 hover:text-black transition">Contact</Link>  
 
         {/* Login/Logout Button */}
