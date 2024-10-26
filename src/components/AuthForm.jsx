@@ -1,87 +1,109 @@
 import React, { useState } from 'react';
-import { FaTimes } from 'react-icons/fa';
 
 function AuthForm({ onClose }) {
+  const [isSignup, setIsSignup] = useState(true); // Toggle between login and signup
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
-  const [isLogin, setIsLogin] = useState(true); // Toggle between login and signup
-  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleAuth = async () => {
-    if (!isLogin && password !== retypePassword) {
-      setMessage("Passwords do not match!");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    // Check if in signup mode and passwords match
+    if (isSignup && password !== retypePassword) {
+      setError('Both passwords must be the same');
       return;
     }
 
-    const url = isLogin ? 'https://bookmycater.freewebhostmost.com/login.php' : 'https://bookmycater.freewebhostmost.com/signup.php';
+    // Updated URLs for login and signup
+    const url = isSignup 
+      ? 'https://bookmycater.freewebhostmost.com/signup.php' 
+      : 'https://bookmycater.freewebhostmost.com/login.php';
+      
+    const data = {
+      username: isSignup ? username : undefined, // Include username only on signup
+      email,
+      password,
+    };
 
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password })
+        body: JSON.stringify(data),
       });
-      const data = await response.json();
-      setMessage(data.message);
-      if (data.success) {
-        // Handle successful login/signup
-        onClose(); // Close the form after successful action
+      const result = await response.json();
+      if (result.success) {
+        setSuccess(result.message);
+        // Optionally, reset fields or perform any post-login/signup actions
+        if (isSignup) {
+          setUsername('');
+          setEmail('');
+          setPassword('');
+          setRetypePassword('');
+        }
+      } else {
+        setError(result.message);
       }
     } catch (error) {
-      setMessage('An error occurred. Please try again.');
+      setError('An error occurred, please try again.');
     }
   };
 
   return (
-    <div className="auth-form bg-white p-6 rounded shadow-md relative w-96">
-      <FaTimes
-        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer"
-        onClick={onClose}
-      />
-      <h2 className="text-xl font-semibold mb-4">{isLogin ? 'Login' : 'Sign Up'}</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className="p-2 border rounded mb-2 w-full"
-      />
-      {!isLogin && (
+    <div className="auth-form">
+      {/* Close Button */}
+      <button onClick={onClose} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+        &times; {/* This represents an "X" icon */}
+      </button>
+      <h2>{isSignup ? 'Sign Up' : 'Login'}</h2>
+      <form onSubmit={handleSubmit}>
+        {isSignup && (
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        )}
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="p-2 border rounded mb-2 w-full"
+          required
         />
-      )}
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="p-2 border rounded mb-2 w-full"
-      />
-      {!isLogin && (
         <input
           type="password"
-          placeholder="Retype Password"
-          value={retypePassword}
-          onChange={(e) => setRetypePassword(e.target.value)}
-          className="p-2 border rounded mb-2 w-full"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
-      )}
-      <button onClick={handleAuth} className="bg-blue-500 text-white px-4 py-2 rounded mt-2 w-full">
-        {isLogin ? 'Login' : 'Sign Up'}
+        {isSignup && (
+          <input
+            type="password"
+            placeholder="Retype Password"
+            value={retypePassword}
+            onChange={(e) => setRetypePassword(e.target.value)}
+            required
+          />
+        )}
+        <button type="submit">{isSignup ? 'Sign Up' : 'Login'}</button>
+        <p className="error">{error && <span>{error}</span>}</p>
+        <p className="success">{success && <span>{success}</span>}</p>
+      </form>
+      <button onClick={() => setIsSignup(!isSignup)}>
+        {isSignup ? 'Already have an account? Login' : "Don't have an account? Sign Up"}
       </button>
-      <button onClick={() => setIsLogin(!isLogin)} className="text-blue-500 mt-2 w-full">
-        {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
-      </button>
-      <p className="text-red-500 mt-2">{message}</p>
     </div>
   );
 }
