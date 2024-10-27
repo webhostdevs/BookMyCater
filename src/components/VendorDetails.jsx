@@ -161,14 +161,16 @@ const VendorDetails = () => {
         
         {/* Main container occupying 80% height */}
          <div className="main flex items-center justify-center h-[80%]">
-          {showImages && (
-            <img
-              src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`} // Assuming you want to show the same image
-              alt="Event Image Thumbnail"
-              className="h-full w-full object-cover rounded-md"
-            />
-          )}
-        </div> 
+  {showImages && vendor.portfolio.split(',').slice(0, 5).map((fileName, index) => (
+    <img
+      key={index}
+      src={`https://bookmycater.freewebhostmost.com/${vendor.folder_location}/${fileName.trim()}`}
+      alt="Event Image Thumbnail"
+      className="h-[150px] w-auto object-cover rounded-md m-2"
+    />
+  ))}
+</div>
+ 
       </div>
 
       {/* TextPart */}
