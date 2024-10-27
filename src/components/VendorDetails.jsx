@@ -29,7 +29,7 @@ const VendorDetails = () => {
           {/* Image container */}
           <div className="detail_img w-full max-w-9xl h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg shadow-lg mb-4">
             <img
-              src={https://bookmycater.freewebhostmost.com/${vendor.event_photos}}
+              src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
               alt="Catering Service"
               className="w-full h-full object-cover"
             />
@@ -163,7 +163,7 @@ const VendorDetails = () => {
         <div className="main flex items-center justify-center h-[80%]">
           {showImages && (
             <img
-              src={https://bookmycater.freewebhostmost.com/${vendor.event_photos}} // Assuming you want to show the same image
+              src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`} // Assuming you want to show the same image
               alt="Event Image Thumbnail"
               className="h-full w-full object-cover rounded-md"
             />
@@ -222,8 +222,8 @@ const VendorDetails = () => {
           <b>Events Catered</b>
           <p>{vendor.total_events}</p>
         </div>
-      </div>
-    </div>
+{/*       </div> */}
+{/*      </div> */}
     {/* TextPart */}
       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
   <p className="text-lg font-medium text-gray-800 mb-4">
@@ -453,8 +453,8 @@ const VendorDetails = () => {
             bit late in serving.
           </p>
         </div>
-{/*       </div> */}
-{/*      </div> */}
+      </div>
+     </div>
   );
 };
 
