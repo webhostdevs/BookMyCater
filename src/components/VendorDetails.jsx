@@ -129,7 +129,7 @@ const VendorDetails = () => {
       {/* Portfolio Section */}
       <div className="portfolio flex flex-col bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
         {/* Top 20% section for buttons */}
-        <div className="flex flex-row items-center justify-evenly h-[10%] shadow-lg">
+        <div className="flex flex-row items-center justify-evenly h-[10%]">
           <button
             className="hover:text-blue-300"
             onClick={() => {
@@ -160,7 +160,7 @@ const VendorDetails = () => {
         </div>
         
         {/* Main container occupying 80% height */}
-         <div className="main flex flex-wrap h-[80%] overflow-y-scroll">
+         <div className="main flex flex-wrap h-[80%] overflow-y-scroll border-t">
   {showImages && vendor.portfolio.split(',').slice(0, 5).map((fileName, index) => (
     <img
       key={index}
