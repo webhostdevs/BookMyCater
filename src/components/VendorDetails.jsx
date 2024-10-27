@@ -336,6 +336,7 @@ const handleSubmit = async (event) => {
         </div>
 
         {/* Feedback Form Section */}
+        
         <div className="p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
   <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
   <form id="feedbackForm" className="space-y-4" onSubmit={handleSubmit}>
@@ -373,9 +374,7 @@ const handleSubmit = async (event) => {
         required
         value={formData.feedback}
         onChange={handleChange}
-      ></textarea>
-    </div>
-    <div>
+      ></textarea> <div>
       <label className="block text-sm font-medium text-gray-700">Rating</label>
       <div className="flex space-x-2">
         {[1, 2, 3, 4, 5].map((value) => (
@@ -393,9 +392,13 @@ const handleSubmit = async (event) => {
         ))}
       </div>
     </div>
+    </div>
+  
     <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">Submit</button>
   </form>
 </div>
+
+please change in thsi and send me back
       {/* COmments Section */}
 
       <div className="comments flex flex-col p-4 space-y-4">
