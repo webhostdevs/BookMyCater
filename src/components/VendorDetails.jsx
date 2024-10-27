@@ -418,34 +418,43 @@ const VendorDetails = () => {
      </div>
 
       <script>
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(document.getElementById('feedbackForm'));
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      feedback: formData.get('feedback'),
-      rating: formData.get('rating'),
-      date: new Date().toISOString().slice(0, 19).replace('T', ' ') // YYYY-MM-DD HH:MM:SS format
-    };
-
-    fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-      alert("Thank you for your feedback!");
-      document.getElementById('feedbackForm').reset();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert("There was an issue submitting your feedback.");
-    });
-  }
+  function getVendorId() 
+        {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get("vendor_id") || "";
+        }
+      
+        function handleSubmit(event) 
+        {
+          event.preventDefault();
+      
+                  const formData = new FormData(document.getElementById('feedbackForm'));
+                  const data = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    feedback: formData.get('feedback'),
+                    rating: formData.get('rating'),
+                    vendor_id: getVendorId(), // Retrieve vendor_id from URL
+                    date: new Date().toISOString().slice(0, 19).replace('T', ' ')
+                  };
+              
+                  fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                  })
+                  .then(response => response.json())
+                  .then(result => {
+                    alert("Thank you for your feedback!");
+                    document.getElementById('feedbackForm').reset();
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                    alert("There was an issue submitting your feedback.");
+                  });
+          }
 </script>
+
   );
 };
 
