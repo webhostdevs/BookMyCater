@@ -300,7 +300,7 @@ const VendorDetails = () => {
         {/* Feedback Form Section */}
         <div className="p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
   <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
-  <form id="feedbackForm" className="space-y-4" onSubmit={handleSubmit}>
+  <form id="feedbackForm" className="space-y-4" onSubmit="handleSubmit(event)">
     <div>
       <label className="block text-sm font-medium text-gray-700" htmlFor="name">
         Name
@@ -340,25 +340,15 @@ const VendorDetails = () => {
     <div>
       <label className="block text-sm font-medium text-gray-700">Rating</label>
       <div className="flex space-x-2">
-        {[1, 2, 3, 4, 5].map((num) => (
-          <label key={num} className="flex items-center space-x-1">
-            <input
-              type="radio"
-              name="rating"
-              value={num}
-              required
-            />
-            <span>{num}</span>
-          </label>
-        ))}
+        <!-- Radio buttons for rating -->
+        <label><input type="radio" name="rating" value="1" required /> 1</label>
+        <label><input type="radio" name="rating" value="2" /> 2</label>
+        <label><input type="radio" name="rating" value="3" /> 3</label>
+        <label><input type="radio" name="rating" value="4" /> 4</label>
+        <label><input type="radio" name="rating" value="5" /> 5</label>
       </div>
     </div>
-    <button
-      type="submit"
-      className="px-4 py-2 bg-black text-white rounded hover:bg-black/80"
-    >
-      Submit
-    </button>
+    <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">Submit</button>
   </form>
 </div>
 
@@ -418,41 +408,39 @@ const VendorDetails = () => {
      </div>
 
       <script>
-  function getVendorId() 
-        {
-          const urlParams = new URLSearchParams(window.location.search);
-          return urlParams.get("vendor_id") || "";
-        }
-      
-        function handleSubmit(event) 
-        {
-          event.preventDefault();
-      
-                  const formData = new FormData(document.getElementById('feedbackForm'));
-                  const data = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    feedback: formData.get('feedback'),
-                    rating: formData.get('rating'),
-                    vendor_id: getVendorId(), // Retrieve vendor_id from URL
-                    date: new Date().toISOString().slice(0, 19).replace('T', ' ')
-                  };
-              
-                  fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                  })
-                  .then(response => response.json())
-                  .then(result => {
-                    alert("Thank you for your feedback!");
-                    document.getElementById('feedbackForm').reset();
-                  })
-                  .catch(error => {
-                    console.error('Error:', error);
-                    alert("There was an issue submitting your feedback.");
-                  });
-          }
+  function getVendorId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("vendor_id") || ""; // Gets vendor_id from URL
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(document.getElementById('feedbackForm'));
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      feedback: formData.get('feedback'),
+      rating: formData.get('rating'),
+      vendor_id: getVendorId(), // Include vendor_id in the data
+      date: new Date().toISOString().slice(0, 19).replace('T', ' ')
+    };
+
+    fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      alert("Thank you for your feedback!");
+      document.getElementById('feedbackForm').reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert("There was an issue submitting your feedback.");
+    });
+  }
 </script>
 
   );
