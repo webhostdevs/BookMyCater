@@ -376,21 +376,21 @@ const handleSubmit = async (event) => {
         onChange={handleChange}
       ></textarea> <div>
       <label className="block text-sm font-medium text-gray-700">Rating</label>
-      <div className="flex space-x-2">
-        {[1, 2, 3, 4, 5].map((value) => (
-          <label key={value}>
-            <input
-              type="radio"
-              name="rating"
-              value={value}
-              required
-              checked={formData.rating === String(value)}
-              onChange={handleChange}
-            />{' '}
-            {value}
-          </label>
-        ))}
-      </div>
+  <div className="flex space-x-2">
+    {[1, 2, 3, 4, 5].map((value) => (
+      <label key={value}>
+        <input
+          type="radio"
+          name="rating"
+          value={value}
+          required
+          checked={formData.rating === String(value)}
+          onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
+        />{' '}
+        {value}
+      </label>
+    ))}
+  </div>
     </div>
     </div>
   
