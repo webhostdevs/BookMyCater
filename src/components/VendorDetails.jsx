@@ -70,7 +70,7 @@ const VendorDetails = () => {
             </p>
             <h4 className="text-xl font-bold text-gray-800">Rs. {vendor.pricing_per_plate}</h4>
           </div>
-          <div className="Starting_price flex flex-col sm:flex-row items-center justify-between text-center sm:text-left mb-6">
+          <div className="Starting_price  sm:text-left mb-6">
             <p className="text-lg font-medium text-gray-700">
               Event Starting from
             </p>
