@@ -130,31 +130,37 @@ const VendorDetails = () => {
       <div className="portfolio flex flex-col bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
         {/* Top 20% section for buttons */}
         <div className="flex flex-row items-center justify-evenly h-[10%]">
-          <button
-            className="hover:text-blue-300"
-            onClick={() => {
-              selected = "portfolio";
-              setShowImages(true);
-            }}
-          >
+           <button
+        className={`${
+          selected === "portfolio" ? "bg-black text-white" : "hover:text-blue-300"
+        }`}
+        onClick={() => {
+          setSelected("portfolio");
+          setShowImages(true);
+        }}
+      >
             Portfolio
           </button>
-          <button
-            className="hover:text-blue-300"
-            onClick={() => {
-              selected = "album";
-              setShowImages(false);
-            }}
-          >
+           <button
+        className={`${
+          selected === "album" ? "bg-black text-white" : "hover:text-blue-300"
+        }`}
+        onClick={() => {
+          setSelected("album");
+          setShowImages(false);
+        }}
+      >
             Album
           </button>
           <button
-            className="hover:text-blue-300"
-            onClick={() => {
-              selected = "images";
-              setShowImages(false);
-            }}
-          >
+        className={`${
+          selected === "images" ? "bg-black text-white" : "hover:text-blue-300"
+        }`}
+        onClick={() => {
+          setSelected("images");
+          setShowImages(false);
+        }}
+      >
             Images
           </button>
         </div>
