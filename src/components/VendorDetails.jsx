@@ -140,21 +140,37 @@ const VendorDetails = () => {
 
       {/* TextPart */}
       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
-        <p className="text-lg font-medium text-gray-800 mb-4">
-          About Seasons Catering Services - {vendor.business_address}
-        </p>
-        <div className="text-gray-700 space-y-4">
-          <p>
-            <b>Dietary Options:</b> {vendor.dietary_accommodations}
-          </p>
-          <p>
-            <b>Services offered:</b> {vendor.services}
-          </p>
-          <p>
-            <b>Areas covered:</b> {vendor.operating_regions}
-          </p>
-        </div>
-      </div>
+  <p className="text-lg font-medium text-gray-800 mb-4">
+    About Seasons Catering Services - {vendor.business_address}
+  </p>
+  <div className="text-gray-700 space-y-4">
+    <p>
+      <b>Dietary Options:</b>
+      <ul className="list-disc ml-5">
+        {vendor.dietary_accommodations.split(',').map((option, index) => (
+          <li key={index}>{option.trim()}</li>
+        ))}
+      </ul>
+    </p>
+    <p>
+      <b>Services offered:</b>
+      <ul className="list-disc ml-5">
+        {vendor.services.split(',').map((service, index) => (
+          <li key={index}>{service.trim()}</li>
+        ))}
+      </ul>
+    </p>
+    <p>
+      <b>Areas covered:</b>
+      <ul className="list-disc ml-5">
+        {vendor.operating_regions.split(',').map((region, index) => (
+          <li key={index}>{region.trim()}</li>
+        ))}
+      </ul>
+    </p>
+  </div>
+</div>
+
 
       {/* Stats Section */}
       <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
