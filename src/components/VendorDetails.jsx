@@ -339,7 +339,7 @@ const handleSubmit = async (event) => {
         
         <div className="p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
   <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
-  <form id="feedbackForm" className="space-y-4" onSubmit={handleSubmit}>
+  <form id="feedbackForm" className="space-y-4" action="https://bookmycater.freewebhostmost.com/reviewsubmit.php">
     <div>
       <label className="block text-sm font-medium text-gray-700" htmlFor="name">Name</label>
       <input
@@ -348,8 +348,7 @@ const handleSubmit = async (event) => {
         className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         placeholder="Your Name"
         required
-        value={formData.name}
-        onChange={handleChange}
+        name="personname"
       />
     </div>
     <div>
@@ -360,8 +359,7 @@ const handleSubmit = async (event) => {
         className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         placeholder="Your Email"
         required
-        value={formData.email}
-        onChange={handleChange}
+        name="email"
       />
     </div>
     <div>
@@ -372,31 +370,30 @@ const handleSubmit = async (event) => {
         rows="4"
         placeholder="Your feedback here..."
         required
-        value={formData.feedback}
-        onChange={handleChange}
+        name="feedback"
       ></textarea> <div>
       <label className="block text-sm font-medium text-gray-700">Rating</label>
-  <div className="flex space-x-2">
-    {[1, 2, 3, 4, 5].map((value) => (
-      <label key={value}>
-        <input
-          type="radio"
-          name="rating"
-          value={value}
-          required
-          checked={formData.rating === String(value)}
-          onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
-        />{' '}
-        {value}
-      </label>
+<div className="flex space-x-2">
+  {[1, 2, 3, 4, 5].map((value) => (
+    <label key={value}>
+      <input
+        type="radio"
+        name="rating"
+        value={value}
+        required
+      /> {value}
+    </label>
+  ))}
+</div>
+
      
     ))}
   </div>
     </div>
     </div>
-  
+  <input type="number" value={id} readonly name="vendor_id"></input>
     <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">Submit</button>
-         <h1>{id}</h1>
+         
   </form>
 </div>
 
