@@ -160,7 +160,7 @@ const VendorDetails = () => {
         </div>
         
         {/* Main container occupying 80% height */}
-{/*         <div className="main flex items-center justify-center h-[80%]">
+         <div className="main flex items-center justify-center h-[80%]">
           {showImages && (
             <img
               src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`} // Assuming you want to show the same image
@@ -168,7 +168,7 @@ const VendorDetails = () => {
               className="h-full w-full object-cover rounded-md"
             />
           )}
-        </div> */}
+        </div> 
       </div>
 
       {/* TextPart */}
@@ -204,32 +204,13 @@ const VendorDetails = () => {
         </div>
       </div> */}
 
-      {/* Stats Section */}
-      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
-        <div className="stat_date text-center">
-          <b>Been on xyz Since</b>
-          <p>9 years, 6 months</p>
-        </div>
-        <div className="stat_review text-center">
-          <b>Total Reviews</b>
-          <p>{vendor.total_reviews}</p>
-        </div>
-        <div className="stat_rating text-center">
-          <b>Overall Rating</b>
-          <p>{vendor.average_rating}</p>
-        </div>
-        <div className="stat_event text-center">
-          <b>Events Catered</b>
-          <p>{vendor.total_events}</p>
-        </div>
-{/*       </div> */}
-     </div>
     {/* TextPart */}
       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
   <p className="text-lg font-medium text-gray-800 mb-4">
     About Seasons Catering Services - {vendor.business_address}
   </p>
-  <div className="text-gray-700 space-y-4">
+  <div className="text-gray-700 space-y-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 ">
+    <div>
     <p>
       <b>Dietary Options:</b>
       <ul className="list-disc ml-5">
@@ -238,6 +219,8 @@ const VendorDetails = () => {
         ))}
       </ul>
     </p>
+      </div>
+    <div>
     <p>
       <b>Services offered:</b>
       <ul className="list-disc ml-5">
@@ -246,6 +229,8 @@ const VendorDetails = () => {
         ))}
       </ul>
     </p>
+      </div>
+    <div>
     <p>
       <b>Areas covered:</b>
       <ul className="list-disc ml-5">
@@ -254,16 +239,14 @@ const VendorDetails = () => {
         ))}
       </ul>
     </p>
+      </div>
   </div>
 </div>
 
 
       {/* Stats Section */}
       <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
-        <div className="stat_date text-center">
-          <b>Been on xyz Since</b>
-          <p>9 years, 6 months</p>
-        </div>
+        
         <div className="stat_VegPrice text-center">
           <b>Veg price per plate</b>
           <p>Rs. 2,000</p>
