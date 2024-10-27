@@ -160,7 +160,7 @@ const VendorDetails = () => {
         </div>
         
         {/* Main container occupying 80% height */}
-        <div className="main flex items-center justify-center h-[80%]">
+{/*         <div className="main flex items-center justify-center h-[80%]">
           {showImages && (
             <img
               src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`} // Assuming you want to show the same image
@@ -170,9 +170,9 @@ const VendorDetails = () => {
           )}
         </div>
       </div>
-
+ */}
       {/* TextPart */}
-      <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
+{/*       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
         <p className="text-lg font-medium text-gray-800 mb-4">
           About Seasons Catering Services - {vendor.business_address}
         </p>
@@ -202,7 +202,7 @@ const VendorDetails = () => {
             </ul>
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Stats Section */}
       <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
