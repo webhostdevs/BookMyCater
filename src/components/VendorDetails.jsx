@@ -38,8 +38,8 @@ const VendorDetails = () => {
               </h4>
               <p className="text-lg">{vendor.business_address}</p>
               <a
-                href="#home"
-                className="text-blue-300 underline mt-4 inline-block hover:text-blue-400"
+                 href={`tel:${vendor.phone_number}`}
+                className="text-black-600 underline mt-4 inline-block hover:text-blue-400"
               >
                 {vendor.phone_number}
               </a>
