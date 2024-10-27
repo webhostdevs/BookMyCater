@@ -43,7 +43,7 @@ const VendorDetails = () => {
               </h4>
               <p className="text-lg">{vendor.business_address}</p>
               <a
-                href={tel:${vendor.phone_number}}
+                href={`tel:${vendor.phone_number}`}
                 className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white flex items-center gap-2"
               >
                 <IoCallOutline /> Contact us
