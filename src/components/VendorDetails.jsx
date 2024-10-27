@@ -181,6 +181,7 @@ const VendorDetails = () => {
   </p>
   <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 ">
     <div>
+      
       <p>
       <b>Areas covered:</b>
       <ul className="list-disc ml-5">
@@ -189,6 +190,8 @@ const VendorDetails = () => {
         ))}
       </ul>
     </p>
+      </div>
+    <div>
     <p>
       <b>Dietary Options:</b>
       <ul className="list-disc ml-5">
@@ -208,9 +211,7 @@ const VendorDetails = () => {
       </ul>
     </p>
       </div>
-    <div>
     
-      </div>
   </div>
 </div>
 
