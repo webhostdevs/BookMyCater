@@ -126,17 +126,32 @@ const VendorDetails = () => {
       </div>
 
       {/* Portfolio Section */}
-      <div className="portfolio flex flex-row items-center justify-evenly bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
-        <a href="#portfolio" className="hover:text-blue-300">
-          Portfolio
-        </a>
-        <a href="#album" className="hover:text-blue-300">
-          Album
-        </a>
-        <a href="#videos" className="hover:text-blue-300">
-          Videos
-        </a>
-      </div>
+      <div className="portfolio flex flex-col bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
+  {/* Top 20% section for anchor tags */}
+  <div className="flex flex-row items-center justify-evenly h-[20%]">
+    <a href="#portfolio" className="hover:text-blue-300">
+      Portfolio
+    </a>
+    <a href="#album" className="hover:text-blue-300">
+      Album
+    </a>
+    <a href="#videos" className="hover:text-blue-300" onClick={() => setSelected("videos")}>
+      Videos
+    </a>
+  </div>
+  
+  {/* Main container occupying 80% height */}
+  <div className="main flex items-center justify-center h-[80%]">
+    {selected === "videos" && (
+      <img
+        src={`https://bookmycater.freewebhostmost.com/${vendor.event_photos}`}
+        alt="Event Video Thumbnail"
+        className="h-full w-full object-cover rounded-md"
+      />
+    )}
+  </div>
+</div>
+
 
       {/* TextPart */}
       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
