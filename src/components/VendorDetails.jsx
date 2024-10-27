@@ -166,7 +166,7 @@ const VendorDetails = () => {
       key={index}
       src={`https://bookmycater.freewebhostmost.com/${vendor.folder_location}/${fileName.trim()}`}
       alt="Prev Event Images"
-      className="w-[160px] h-[160px] object-cover m-3"
+      className="w-[160px] h-[160px] object-cover m-1"
     />
   ))}
 </div>
