@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
 import { FaStar } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+
 
 const HomePage = () => {
   const [vendors, setVendors] = useState([]);
@@ -144,7 +146,7 @@ const HomePage = () => {
               </div>
               <div className="p-4 bg-white flex-grow">
                 <p className="text-gray-700" style={{ fontSize: '1rem', fontWeight: '500' }}>
-                  📍 {vendor.operating_regions}
+                  <FaLocationDot /> {vendor.operating_regions}
                 </p>
                 <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
               </div>
