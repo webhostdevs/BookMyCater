@@ -30,11 +30,6 @@ const VendorDetails = () => {
   
   };
 
-  // Function to toggle popup visibility
-  const togglePopup = () => {
-    setIsPopupOpen(!isPopupOpen);
-  };
-
   return (
    
 
