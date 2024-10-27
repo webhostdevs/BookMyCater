@@ -160,7 +160,7 @@ const VendorDetails = () => {
         </div>
         
         {/* Main container occupying 80% height */}
-         <div className="main flex flex-wrap h-[80%]">
+         <div className="main flex flex-wrap h-[80%] overflow-y-scroll">
   {showImages && vendor.portfolio.split(',').slice(0, 5).map((fileName, index) => (
     <img
       key={index}
