@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
+import { IoClose } from 'react-icons/io5';
 
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null); 
+  const VendorContact = ({ vendor }) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`https://bookmycater.freewebhostmost.com/getVendorDetails.php?id=${id}`)
