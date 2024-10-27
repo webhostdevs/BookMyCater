@@ -389,13 +389,14 @@ const handleSubmit = async (event) => {
         />{' '}
         {value}
       </label>
-      <h1>{id}</h1>
+     
     ))}
   </div>
     </div>
     </div>
   
     <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">Submit</button>
+         <h1>{id}</h1>
   </form>
 </div>
 
