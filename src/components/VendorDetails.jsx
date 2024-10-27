@@ -3,62 +3,60 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
-
 let selected = "portfolio";
+
 const VendorDetails = () => {
-
   const vendorId = window.location.pathname.split('/').pop();
-
-const [formData, setFormData] = useState({
-  name: '',
-  email: '',
-  feedback: '',
-  rating: ''
-});
-
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.id]: e.target.value
-  });
-};
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  const response = await fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ...formData, vendor_id: vendorId, date: new Date().toISOString() })
-  });
-
-  if (response.ok) {
-    alert('Feedback submitted successfully');
-    setFormData({ name: '', email: '', feedback: '', rating: '' });
-  } else {
-    alert('Failed to submit feedback');
-  }
-};
-
-  
   const { id } = useParams();
   const [vendor, setVendor] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    feedback: '',
+    rating: ''
+  });
   const [showImages, setShowImages] = useState(true);
-
-  const openWhatsApp = () => {
-    window.open(`https://wa.me/${vendor.phone_number}`, '_blank');
-  };
-
+  
   useEffect(() => {
     axios.get(`https://bookmycater.freewebhostmost.com/getVendorDetails.php?id=${id}`)
       .then(response => setVendor(response.data))
       .catch(error => console.error(error));
   }, [id]);
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const response = await fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...formData, vendor_id: vendorId, date: new Date().toISOString() })
+      });
+
+      if (response.ok) {
+        alert('Feedback submitted successfully');
+        setFormData({ name: '', email: '', feedback: '', rating: '' });
+      } else {
+        alert('Failed to submit feedback');
+      }
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      alert('An error occurred while submitting feedback.');
+    }
+  };
+
   if (!vendor) return <p>Loading...</p>;
 
+  
   return (
     <div className="w-full bg-gray-50 p-8 max-[425px]:p-0">
       <div className="detail flex flex-col lg:flex-row gap-8 lg:gap-16 items-start p-4 sm:p-6 lg:p-8 justify-between ">
