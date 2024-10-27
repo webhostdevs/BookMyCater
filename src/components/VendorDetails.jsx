@@ -129,7 +129,7 @@ const VendorDetails = () => {
       {/* Portfolio Section */}
       <div className="portfolio flex flex-col bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
         {/* Top 20% section for buttons */}
-        <div className="flex flex-row items-center justify-evenly h-[20%]">
+        <div className="flex flex-row items-center justify-evenly h-[10%] shadow-lg">
           <button
             className="hover:text-blue-300"
             onClick={() => {
