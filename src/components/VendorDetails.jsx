@@ -134,7 +134,7 @@ const VendorDetails = () => {
             className="hover:text-blue-300"
             onClick={() => {
               selected = "portfolio";
-              setShowImages(false);
+              setShowImages(true);
             }}
           >
             Portfolio
@@ -152,7 +152,7 @@ const VendorDetails = () => {
             className="hover:text-blue-300"
             onClick={() => {
               selected = "images";
-              setShowImages(true);
+              setShowImages(false);
             }}
           >
             Images
@@ -166,7 +166,7 @@ const VendorDetails = () => {
       key={index}
       src={`https://bookmycater.freewebhostmost.com/${vendor.folder_location}/${fileName.trim()}`}
       alt="Prev Event Images"
-      className="w-auto h-[160px] object-contain m-1"
+      className="w-[160px] h-[160px] object-cover m-1 mb-0.5 mt-0.5"
     />
   ))}
 </div>
