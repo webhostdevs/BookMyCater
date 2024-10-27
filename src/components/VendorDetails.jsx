@@ -339,7 +339,7 @@ const handleSubmit = async (event) => {
         
         <div className="p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
   <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
-  <form id="feedbackForm" className="space-y-4" action="https://bookmycater.freewebhostmost.com/reviewsubmit.php">
+  <form id="feedbackForm" className="space-y-4" action="https://bookmycater.freewebhostmost.com/reviewsubmit.php" method="POST">
   <div>
     <label className="block text-sm font-medium text-gray-700" htmlFor="name">Name</label>
     <input
