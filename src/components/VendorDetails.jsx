@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
+let selected = "portfolio";
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null); 
