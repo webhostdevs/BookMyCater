@@ -299,62 +299,68 @@ const VendorDetails = () => {
 
         {/* Feedback Form Section */}
         <div className="p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
-          <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
-          <form className="space-y-4">
-            <div>
-              <label
-                className="block text-sm font-medium text-gray-700"
-                htmlFor="name"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-            <div>
-              <label
-                className="block text-sm font-medium text-gray-700"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-            <div>
-              <label
-                className="block text-sm font-medium text-gray-700"
-                htmlFor="feedback"
-              >
-                Feedback
-              </label>
-              <textarea
-                id="feedback"
-                className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                rows="4"
-                placeholder="Your feedback here..."
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-black text-white rounded hover:bg-black/80"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
+  <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
+  <form id="feedbackForm" className="space-y-4" onSubmit={handleSubmit}>
+    <div>
+      <label className="block text-sm font-medium text-gray-700" htmlFor="name">
+        Name
+      </label>
+      <input
+        type="text"
+        id="name"
+        className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+        placeholder="Your Name"
+        required
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-gray-700" htmlFor="email">
+        Email
+      </label>
+      <input
+        type="email"
+        id="email"
+        className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+        placeholder="Your Email"
+        required
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-gray-700" htmlFor="feedback">
+        Feedback
+      </label>
+      <textarea
+        id="feedback"
+        className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+        rows="4"
+        placeholder="Your feedback here..."
+        required
+      ></textarea>
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-gray-700">Rating</label>
+      <div className="flex space-x-2">
+        {[1, 2, 3, 4, 5].map((num) => (
+          <label key={num} className="flex items-center space-x-1">
+            <input
+              type="radio"
+              name="rating"
+              value={num}
+              required
+            />
+            <span>{num}</span>
+          </label>
+        ))}
       </div>
+    </div>
+    <button
+      type="submit"
+      className="px-4 py-2 bg-black text-white rounded hover:bg-black/80"
+    >
+      Submit
+    </button>
+  </form>
+</div>
 
       {/* COmments Section */}
 
@@ -410,6 +416,36 @@ const VendorDetails = () => {
         </div>
       </div>
      </div>
+
+      <script>
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(document.getElementById('feedbackForm'));
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      feedback: formData.get('feedback'),
+      rating: formData.get('rating'),
+      date: new Date().toISOString().slice(0, 19).replace('T', ' ') // YYYY-MM-DD HH:MM:SS format
+    };
+
+    fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      alert("Thank you for your feedback!");
+      document.getElementById('feedbackForm').reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert("There was an issue submitting your feedback.");
+    });
+  }
+</script>
   );
 };
 
