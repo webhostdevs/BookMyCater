@@ -13,7 +13,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center">
       {/* Left - Company Name */}
-      <Link to="/" className="text-2xl font-bold text-gray-800">Company Name</Link>
+      <Link to="/" className="text-2xl font-bold text-gray-800">BookMyCaterer</Link>
 
       {/* Right - Search and Navigation */}
       <div className="flex items-center space-x-4">
