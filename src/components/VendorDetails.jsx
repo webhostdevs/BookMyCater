@@ -64,13 +64,13 @@ const VendorDetails = () => {
         {/* Right Section */}
         <div className="detail_price w-full h-max lg:w-1/2 xl:w-1/3 bg-white rounded-lg p-6 shadow-lg">
           {/* Price Info */}
-          <div className="Starting_price sm:text-left mb-6">
+          <div className="Starting_price flex flex-col sm:flex-row  sm:text-left mb-6">
             <p className="text-lg font-medium text-gray-700">
               Plate Starting from
             </p>
             <h4 className="text-l font-bold text-gray-800">Rs. {vendor.pricing_per_plate}</h4>
           </div>
-          <div className="Starting_price  sm:text-left mb-6">
+          <div className="Starting_price flex flex-col sm:flex-row  sm:text-left mb-6">
             <p className="text-lg font-medium text-gray-700">
               Event Starting from
             </p>
@@ -166,7 +166,7 @@ const VendorDetails = () => {
       key={index}
       src={`https://bookmycater.freewebhostmost.com/${vendor.folder_location}/${fileName.trim()}`}
       alt="Prev Event Images"
-      className="w-[150px] h-[150px] object-cover rounded-md m-2"
+      className="w-[160px] h-[160px] object-cover rounded-md m-2"
     />
   ))}
 </div>
