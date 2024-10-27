@@ -10,7 +10,7 @@ const VendorDetails = () => {
   const [showImages, setShowImages] = useState(false); // New state for showing images
 
   const openWhatsApp = () => {
-    window.open(https://wa.me/${vendor.phone_number}, '_blank');
+    window.open(`https://wa.me/${vendor.phone_number}`, '_blank');
   };
 
   useEffect(() => {
