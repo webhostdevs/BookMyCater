@@ -369,7 +369,7 @@ const VendorDetails = () => {
               />
             </div>
             <div className="names flex flex-col">
-              <p className="name text-lg font-semibold">John Doe</p>
+              <p className="name text-lg font-semibold">Jayanth Kumar</p>
               <p className="date text-sm text-gray-500">2 days ago</p>
             </div>
             <div className="user_ratings flex items-center ml-auto">
@@ -395,7 +395,7 @@ const VendorDetails = () => {
               />
             </div>
             <div className="names flex flex-col">
-              <p className="name text-lg font-semibold">Jane Smith</p>
+              <p className="name text-lg font-semibold">Sridama Suhrid</p>
               <p className="date text-sm text-gray-500">3 days ago</p>
             </div>
             <div className="user_ratings flex items-center ml-auto">
