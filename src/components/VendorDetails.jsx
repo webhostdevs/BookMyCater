@@ -3,7 +3,11 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
-const vendorId = window.location.pathname.split('/').pop();
+
+let selected = "portfolio";
+const VendorDetails = () => {
+
+  const vendorId = window.location.pathname.split('/').pop();
 
 const [formData, setFormData] = useState({
   name: '',
@@ -38,8 +42,7 @@ const handleSubmit = async (event) => {
   }
 };
 
-let selected = "portfolio";
-const VendorDetails = () => {
+  
   const { id } = useParams();
   const [vendor, setVendor] = useState(null);
   const [showImages, setShowImages] = useState(true);
