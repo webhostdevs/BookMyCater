@@ -135,7 +135,7 @@ const VendorDetails = () => {
           selected === "portfolio" ? "bg-black text-white" : "hover:text-blue-300"
         }`}
         onClick={() => {
-          setSelected("portfolio");
+          selected("portfolio");
           setShowImages(true);
         }}
       >
@@ -146,7 +146,7 @@ const VendorDetails = () => {
           selected === "album" ? "bg-black text-white" : "hover:text-blue-300"
         }`}
         onClick={() => {
-          setSelected("album");
+          selected("album");
           setShowImages(false);
         }}
       >
@@ -157,7 +157,7 @@ const VendorDetails = () => {
           selected === "images" ? "bg-black text-white" : "hover:text-blue-300"
         }`}
         onClick={() => {
-          setSelected("images");
+          selected("images");
           setShowImages(false);
         }}
       >
