@@ -160,13 +160,13 @@ const VendorDetails = () => {
         </div>
         
         {/* Main container occupying 80% height */}
-         <div className="main flex items-center justify-center h-[80%]">
+         <div className="main flex h-[80%]">
   {showImages && vendor.portfolio.split(',').slice(0, 5).map((fileName, index) => (
     <img
       key={index}
       src={`https://bookmycater.freewebhostmost.com/${vendor.folder_location}/${fileName.trim()}`}
-      alt="Event Image Thumbnail"
-      className="h-[150px] w-auto object-cover rounded-md m-2"
+      alt="Prev Event Images"
+      className="w-[250px] w-auto object-cover rounded-md m-2"
     />
   ))}
 </div>
