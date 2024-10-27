@@ -420,6 +420,7 @@ const VendorDetails = () => {
             professional.
           </p>
         </div>
+        </div>
 
         {/* Add more comments as needed */}
         <div className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md">
