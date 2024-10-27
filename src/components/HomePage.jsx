@@ -145,9 +145,10 @@ const HomePage = () => {
                 </button>
               </div>
               <div className="p-4 bg-white flex-grow">
-                <p className="text-gray-700" style={{ fontSize: '1rem', fontWeight: '500' }}>
-                  <FaLocationDot /> {vendor.operating_regions}
+                <p className="text-gray-700 flex items-center" style={{ fontSize: '1rem', fontWeight: '500' }}>
+                    <FaLocationDot className="mr-1" /> {vendor.operating_regions}
                 </p>
+
                 <h2 className="text-lg text-black font-semibold">Starting from: ₹{vendor.pricing_per_event}</h2>
               </div>
             </Link>
