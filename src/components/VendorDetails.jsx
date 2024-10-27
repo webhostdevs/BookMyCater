@@ -453,8 +453,8 @@ const VendorDetails = () => {
             bit late in serving.
           </p>
         </div>
-      </div>
-    // </div>
+{/*       </div> */}
+{/*      </div> */}
   );
 };
 
