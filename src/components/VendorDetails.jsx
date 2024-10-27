@@ -177,6 +177,7 @@ const VendorDetails = () => {
   <p className="text-lg font-medium text-gray-800 mb-4">
     About {vendor.company_name} Services - {vendor.business_address}
   </p>
+
   <div className="text-gray-700 space-y-4">
     <p>
       <b>Dietary Options:</b>
