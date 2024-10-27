@@ -161,7 +161,7 @@ const VendorDetails = () => {
         
         {/* Main container occupying 80% height */}
          <div className="main flex flex-wrap h-[80%] overflow-y-scroll border-t">
-  {showImages && vendor.portfolio.split(',').slice(0, 5).map((fileName, index) => (
+  {showImages && vendor.portfolio.split(',').slice(0, 105).map((fileName, index) => (
     <img
       key={index}
       src={`https://bookmycater.freewebhostmost.com/${vendor.folder_location}/${fileName.trim()}`}
