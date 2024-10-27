@@ -7,8 +7,17 @@ import { IoClose } from 'react-icons/io5';
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null); 
-  const VendorContact = ({ vendor }) => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+   const [isPopupOpen, setIsPopupOpen] = useState(false);  // Initialize the state correctly
+
+  // Function to open WhatsApp
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${vendor.phone_number}`, '_blank');
+  };
+
+  // Function to toggle popup visibility
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+ 
 
   useEffect(() => {
     axios.get(`https://bookmycater.freewebhostmost.com/getVendorDetails.php?id=${id}`)
@@ -18,8 +27,7 @@ const VendorDetails = () => {
 
   if (!vendor) return <p>Loading...</p>;
 
-  const openWhatsApp = () => {
-    window.open(`https://wa.me/${vendor.phone_number}`, '_blank');
+  
   };
 
   // Function to toggle popup visibility
