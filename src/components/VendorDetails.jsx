@@ -15,6 +15,15 @@ const VendorDetails = () => {
 
   if (!vendor) return <p>Loading...</p>;
 
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${vendor.phone_number}`, '_blank');
+  };
+
+  // Function to toggle popup visibility
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
   return (
    
 
@@ -74,14 +83,53 @@ const VendorDetails = () => {
           </div>
 
           {/* Buttons */}
-          <div className="Buttons flex flex-col sm:flex-row gap-4 mb-6">
-            <button className="w-full sm:w-auto px-6 py-2 bg-black text-nowrap text-white rounded-lg font-medium hover:bg-blue-700 transition">
-              Send Message
+           <div className="Buttons flex flex-col sm:flex-row gap-4 mb-6">
+      {/* Send Message Button */}
+      <button
+        onClick={openWhatsApp}
+        className="w-full sm:w-auto px-6 py-2 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition"
+      >
+        Send Message
+      </button>
+
+      {/* View Contact Button */}
+      <button
+        onClick={togglePopup}
+        className="w-full sm:w-auto px-6 py-2 bg-gray-300 text-gray-800 rounded-lg font-medium hover:bg-gray-400 transition"
+      >
+        View Contact
+      </button>
+
+      {/* Popup */}
+      {isPopupOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+          onClick={togglePopup}
+        >
+          <div
+            className="bg-white rounded-lg p-6 w-80 relative"
+            onClick={(e) => e.stopPropagation()} // Prevents popup close when clicking inside
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+              onClick={togglePopup}
+            >
+              <IoClose size={24} />
             </button>
-            <button className="w-full sm:w-auto px-6 py-2 bg-gray-300 text-gray-800 text-nowrap rounded-lg font-medium hover:bg-gray-400 transition">
-              View Contact
-            </button>
+            <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
+            <p>
+              <strong>Contact Person:</strong> {vendor.contact_person}
+            </p>
+            <p>
+              <strong>Phone:</strong> {vendor.phone_number}
+            </p>
+            <p>
+              <strong>Email:</strong> {vendor.email_address}
+            </p>
           </div>
+        </div>
+      )}
+    </div>
 
           {/* Form */}
           <div className="detail_form">
