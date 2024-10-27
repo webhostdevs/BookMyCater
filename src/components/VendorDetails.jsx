@@ -3,6 +3,28 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
+function VendorDetails({ vendor }) {
+  const [activeSection, setActiveSection] = useState("portfolio");
+
+    const renderContent = () => {
+    switch (activeSection) {
+      case "portfolio":
+        return <div>{/* Portfolio content goes here */}</div>;
+      case "album":
+        return <div>{/* Album content goes here */}</div>;
+      case "videos":
+        return (
+          <ul className="list-disc ml-5">
+            {vendor.operating_regions.split(",").map((region, index) => (
+              <li key={index}>{region.trim()}</li>
+            ))}
+          </ul>
+        );
+      default:
+        return null;
+    }
+  };
+
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null); 
@@ -126,17 +148,37 @@ const VendorDetails = () => {
       </div>
 
       {/* Portfolio Section */}
-      <div className="portfolio flex flex-row items-center justify-evenly bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
-        <a href="#portfolio" className="hover:text-blue-300">
+     <div className="portfolio flex flex-col bg-white text-black p-6 ml-10 mr-10 h-[500px] rounded-lg shadow-md">
+      {/* Navigation Part - 20% Height */}
+      <div className="flex flex-row items-center justify-evenly h-[20%] w-full border-b-2 border-gray-300">
+        <a
+          href="#portfolio"
+          onClick={() => setActiveSection("portfolio")}
+          className={`hover:text-blue-300 ${activeSection === "portfolio" ? "text-blue-500 font-semibold" : ""}`}
+        >
           Portfolio
         </a>
-        <a href="#album" className="hover:text-blue-300">
+        <a
+          href="#album"
+          onClick={() => setActiveSection("album")}
+          className={`hover:text-blue-300 ${activeSection === "album" ? "text-blue-500 font-semibold" : ""}`}
+        >
           Album
         </a>
-        <a href="#videos" className="hover:text-blue-300">
+        <a
+          href="#videos"
+          onClick={() => setActiveSection("videos")}
+          className={`hover:text-blue-300 ${activeSection === "videos" ? "text-blue-500 font-semibold" : ""}`}
+        >
           Videos
         </a>
       </div>
+
+      {/* Content Part - 80% Height */}
+      <div className="content-area h-[80%] w-full p-4 overflow-y-auto">
+        {renderContent()}
+      </div>
+    </div>
 
       {/* TextPart */}
       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
