@@ -3,6 +3,41 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
+const vendorId = window.location.pathname.split('/').pop();
+
+const [formData, setFormData] = useState({
+  name: '',
+  email: '',
+  feedback: '',
+  rating: ''
+});
+
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.id]: e.target.value
+  });
+};
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  const response = await fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ...formData, vendor_id: vendorId, date: new Date().toISOString() })
+  });
+
+  if (response.ok) {
+    alert('Feedback submitted successfully');
+    setFormData({ name: '', email: '', feedback: '', rating: '' });
+  } else {
+    alert('Failed to submit feedback');
+  }
+};
+
 let selected = "portfolio";
 const VendorDetails = () => {
   const { id } = useParams();
@@ -300,58 +335,64 @@ const VendorDetails = () => {
         {/* Feedback Form Section */}
         <div className="p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
   <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
-  <form id="feedbackForm" className="space-y-4" onSubmit="handleSubmit(event)">
+  <form id="feedbackForm" className="space-y-4" onSubmit={handleSubmit}>
     <div>
-      <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-        Name
-      </label>
+      <label className="block text-sm font-medium text-gray-700" htmlFor="name">Name</label>
       <input
         type="text"
         id="name"
         className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         placeholder="Your Name"
         required
+        value={formData.name}
+        onChange={handleChange}
       />
     </div>
     <div>
-      <label className="block text-sm font-medium text-gray-700" htmlFor="email">
-        Email
-      </label>
+      <label className="block text-sm font-medium text-gray-700" htmlFor="email">Email</label>
       <input
         type="email"
         id="email"
         className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         placeholder="Your Email"
         required
+        value={formData.email}
+        onChange={handleChange}
       />
     </div>
     <div>
-      <label className="block text-sm font-medium text-gray-700" htmlFor="feedback">
-        Feedback
-      </label>
+      <label className="block text-sm font-medium text-gray-700" htmlFor="feedback">Feedback</label>
       <textarea
         id="feedback"
         className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
         rows="4"
         placeholder="Your feedback here..."
         required
+        value={formData.feedback}
+        onChange={handleChange}
       ></textarea>
     </div>
     <div>
       <label className="block text-sm font-medium text-gray-700">Rating</label>
       <div className="flex space-x-2">
-        <!-- Radio buttons for rating -->
-        <label><input type="radio" name="rating" value="1" required /> 1</label>
-        <label><input type="radio" name="rating" value="2" /> 2</label>
-        <label><input type="radio" name="rating" value="3" /> 3</label>
-        <label><input type="radio" name="rating" value="4" /> 4</label>
-        <label><input type="radio" name="rating" value="5" /> 5</label>
+        {[1, 2, 3, 4, 5].map((value) => (
+          <label key={value}>
+            <input
+              type="radio"
+              name="rating"
+              value={value}
+              required
+              checked={formData.rating === String(value)}
+              onChange={handleChange}
+            />{' '}
+            {value}
+          </label>
+        ))}
       </div>
     </div>
     <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">Submit</button>
   </form>
 </div>
-
       {/* COmments Section */}
 
       <div className="comments flex flex-col p-4 space-y-4">
@@ -406,42 +447,6 @@ const VendorDetails = () => {
         </div>
       </div>
      </div>
-
-      <script>
-  function getVendorId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("vendor_id") || ""; // Gets vendor_id from URL
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(document.getElementById('feedbackForm'));
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      feedback: formData.get('feedback'),
-      rating: formData.get('rating'),
-      vendor_id: getVendorId(), // Include vendor_id in the data
-      date: new Date().toISOString().slice(0, 19).replace('T', ' ')
-    };
-
-    fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-      alert("Thank you for your feedback!");
-      document.getElementById('feedbackForm').reset();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert("There was an issue submitting your feedback.");
-    });
-  }
-</script>
 
   );
 };
