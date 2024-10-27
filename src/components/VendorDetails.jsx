@@ -398,7 +398,6 @@ const handleSubmit = async (event) => {
   </form>
 </div>
 
-please change in thsi and send me back
       {/* COmments Section */}
 
       <div className="comments flex flex-col p-4 space-y-4">
