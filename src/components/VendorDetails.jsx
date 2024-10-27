@@ -7,7 +7,7 @@ let selected = "portfolio";
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null);
-  const [showImages, setShowImages] = useState(false); // New state for showing images
+  const [showImages, setShowImages] = useState(true);
 
   const openWhatsApp = () => {
     window.open(`https://wa.me/${vendor.phone_number}`, '_blank');
