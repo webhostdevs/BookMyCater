@@ -222,8 +222,7 @@ const VendorDetails = () => {
           <b>Events Catered</b>
           <p>{vendor.total_events}</p>
         </div>
-      </div>
-    </div>
+    
     {/* TextPart */}
       <div className="detail_text w-full bg-white rounded-lg p-6 shadow-lg mt-8 mx-auto">
   <p className="text-lg font-medium text-gray-800 mb-4">
