@@ -5,7 +5,7 @@ import { IoCallOutline } from "react-icons/io5";
 
 // const { id } = useParams();
 function Reviews() {
-  const { id, id2 } = useParams();
+  const { id2 } = useParams();
 
   const [reviews, setReviews] = useState([]);
 
@@ -23,7 +23,7 @@ function Reviews() {
       .catch(error => console.error('Error fetching reviews:', error));
   }, [id2]);
 
-
+ const { id } = useParams();
 let selected = "portfolio";
 
   
