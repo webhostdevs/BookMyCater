@@ -374,7 +374,7 @@ const VendorDetails = () => {
       </div>
     </div>
   </div>
-  <input type="number" value={id} readonly name="vendor_id"  style={{ display: "none" }}" />
+  <input type="number" value={id} readonly name="vendor_id"  style={{ display: "none" }} />
   <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">Submit</button>
 </form>
 </div>
