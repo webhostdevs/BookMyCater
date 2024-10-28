@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
-
+const { id } = useParams();
 function Reviews() {
+  const { id } = useParams();
   const { id: vendor_id } = useParams();
   const [reviews, setReviews] = useState([]);
 
@@ -26,7 +27,7 @@ function Reviews() {
 let selected = "portfolio";
 
   
-  const { id } = useParams();
+  
   const [vendor, setVendor] = useState(null);
   const [showImages, setShowImages] = useState(true);
 
