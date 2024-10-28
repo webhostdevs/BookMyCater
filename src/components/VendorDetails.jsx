@@ -20,7 +20,7 @@ function Reviews() {
         }
       })
       .catch(error => console.error('Error fetching reviews:', error));
-  }, [vendor_id]);
+  }, [id2]);
 
 
 let selected = "portfolio";
