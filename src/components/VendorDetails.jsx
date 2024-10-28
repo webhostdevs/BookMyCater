@@ -24,7 +24,6 @@ const VendorDetails = () => {
       .then(response => setVendor(response.data))
       .catch(error => console.error(error));
   }, [id]);
-  function Reviews() {
   const { id2 } = useParams();
 
   const [reviews, setReviews] = useState([]);
