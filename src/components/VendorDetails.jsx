@@ -30,7 +30,7 @@ const VendorDetails = () => {
 
   useEffect(() => {
     // Fetch reviews for the specific vendor
-    fetch(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id2}`)
+    fetch(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id}`)
       .then(response => response.json())
       .then(data => {
         if (!data.error) {
@@ -40,7 +40,7 @@ const VendorDetails = () => {
         }
       })
       .catch(error => console.error('Error fetching reviews:', error));
-  }, [id2]);
+  }, [id]);
 
   if (!vendor) return <p>Loading...</p>;
 
