@@ -4,7 +4,7 @@ import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
 // const { id } = useParams();
-function Reviews() {
+function Reviews=()=> {
  
 
   const [reviews, setReviews] = useState([]);
