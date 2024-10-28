@@ -4,6 +4,25 @@ import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
 
+function Reviews() {
+  const { id: vendor_id } = useParams();
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    // Fetch reviews for the specific vendor
+    fetch(`http://localhost/fetchreviews.php?vendor_id=${vendor_id}`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.error) {
+          setReviews(data);
+        } else {
+          console.error(data.error);
+        }
+      })
+      .catch(error => console.error('Error fetching reviews:', error));
+  }, [vendor_id]);
+
+
 let selected = "portfolio";
 
   
@@ -360,35 +379,35 @@ let selected = "portfolio";
 
       {/* COmments Section */}
 
-      <div className="comments flex flex-col p-4 space-y-4">
-        <div className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md">
-          <div className="user_info flex flex-row items-center space-x-4">
-            <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                alt="User Profile"
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div className="names flex flex-col">
-              <p className="name text-lg font-semibold">Jayanth Kumar</p>
-              <p className="date text-sm text-gray-500">2 days ago</p>
-            </div>
-            <div className="user_ratings flex items-center ml-auto">
-              {/* Replace '⭐' with an icon or component for star ratings */}
-              <span className="text-yellow-500">⭐ ⭐ ⭐ ⭐ ⭐</span>
-              <p className="text-sm ml-1">5.0</p>
-            </div>
-          </div>
-          <p className="comment_text mt-2 text-gray-700">
-            This is a great service! Food was delicious and the staff were very
-            professional.
-          </p>
-        </div>
-        </div>
+      <div>
+      {reviews.map(review => (
+        <div key={review.id} className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md">
+          <div className="user_info flex flex-row items-center space-x-4">
+            <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                alt="User Profile"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="names flex flex-col">
+              <p className="name text-lg font-semibold">{review.name}</p>
+              <p className="date text-sm text-gray-500">{new Date(review.date).toLocaleDateString()}</p>
+            </div>
+            <div className="user_ratings flex items-center ml-auto">
+              <span className="text-yellow-500">{'⭐ '.repeat(review.rating)}</span>
+              <p className="text-sm ml-1">{review.rating}.0</p>
+            </div>
+          </div>
+          <p className="comment_text mt-2 text-gray-700">
+            {review.feedback}
+          </p>
+        </div>
+      ))}
+    </div>
 
         {/* Add more comments as needed */}
-        <div className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md">
+{/*         <div className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md">
           <div className="user_info flex flex-row items-center space-x-4">
             <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
               <img
@@ -410,7 +429,7 @@ let selected = "portfolio";
             The setup was beautiful, and the food was amazing, but they were a
             bit late in serving.
           </p>
-        </div>
+        </div> */}
       </div>
      </div>
 
