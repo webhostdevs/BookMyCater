@@ -5,13 +5,12 @@ import { IoCallOutline } from "react-icons/io5";
 
 const { id } = useParams();
 function Reviews() {
-  const { id } = useParams();
   const { id: vendor_id } = useParams();
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     // Fetch reviews for the specific vendor
-    fetch(`http://localhost/fetchreviews.php?vendor_id=${vendor_id}`)
+    fetch(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${vendor_id}`)
       .then(response => response.json())
       .then(data => {
         if (!data.error) {
