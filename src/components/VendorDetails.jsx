@@ -5,7 +5,8 @@ import { IoCallOutline } from "react-icons/io5";
 
 const { id } = useParams();
 function Reviews() {
-  const { id2} = useParams();
+  const { id, id2 } = useParams();
+
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
