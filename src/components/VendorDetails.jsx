@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
-const { id } = useParams();
+// const { id } = useParams();
 function Reviews() {
   const { id, id2 } = useParams();
 
