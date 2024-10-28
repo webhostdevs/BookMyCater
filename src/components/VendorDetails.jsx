@@ -436,7 +436,7 @@ const VendorDetails = () => {
         </div>
       ))}
     </div>
-      </div>
+{/*       </div> */}
      </div>
 
   );
