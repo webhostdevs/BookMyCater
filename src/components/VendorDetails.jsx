@@ -409,37 +409,35 @@ const VendorDetails = () => {
         </div>
 
         {/* Add more comments as needed */}
-       <div>
-      {reviews.map(review => (
-        <div key={review.id} className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md">
-          <div className="user_info flex flex-row items-center space-x-4">
-            <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                alt="User Profile"
-                className="object-cover w-full h-full"
-              />
+       <div className="w-full mt-8">
+          {reviews.map(review => (
+            <div key={review.id} className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md mb-4">
+              <div className="user_info flex flex-row items-center space-x-4">
+                <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    alt="User Profile"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="names flex flex-col">
+                  <p className="name text-lg font-semibold">{review.name}</p>
+                  <p className="date text-sm text-gray-500">{new Date(review.date).toLocaleDateString()}</p>
+                </div>
+                <div className="user_ratings flex items-center ml-auto">
+                  <span className="text-yellow-500">{'⭐ '.repeat(review.rating)}</span>
+                  <p className="text-sm ml-1">{review.rating}.0</p>
+                </div>
+              </div>
+              <p className="comment_text mt-2 text-gray-700">
+                {review.feedback}
+              </p>
             </div>
-            <div className="names flex flex-col">
-              <p className="name text-lg font-semibold">{review.name}</p>
-              <p className="date text-sm text-gray-500">{new Date(review.date).toLocaleDateString()}</p>
-            </div>
-            <div className="user_ratings flex items-center ml-auto">
-              <span className="text-yellow-500">{'⭐ '.repeat(review.rating)}</span>
-              <p className="text-sm ml-1">{review.rating}.0</p>
-            </div>
-          </div>
-          <p className="comment_text mt-2 text-gray-700">
-            {review.feedback}
-          </p>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
-         </div>
-      </div>
-
-
-  );
+  );
 };
 
 export default VendorDetails;
