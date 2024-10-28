@@ -219,7 +219,7 @@ let selected = "portfolio";
 
 
       {/* Stats Section */}
-      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
+      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
         
         <div className="stat_VegPrice text-center">
           <b>Veg price per plate</b>
