@@ -6,14 +6,14 @@ import { IoCallOutline } from "react-icons/io5";
 // const { id } = useParams();
 function Reviews() {
   const [reviews, setReviews] = useState([]);
-  
+  const { id } = useParams();
   useEffect(() => {
     axios.get(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id}`)
       .then(response => setReviews(response.data))
       .catch(error => console.error('Error fetching reviews:', error));
   }, [id]);
 
- const { id } = useParams();
+
 let selected = "portfolio";
 
   
