@@ -3,22 +3,30 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
-// const { id } = useParams();
+
 function Reviews() {
-  const { id } = useParams();
+  const { id: vendor_id } = useParams();
   const [reviews, setReviews] = useState([]);
- 
+
   useEffect(() => {
-    axios.get(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id}`)
-      .then(response => setReviews(response.data))
+    // Fetch reviews for the specific vendor
+    fetch(`http://localhost/fetchreviews.php?vendor_id=${vendor_id}`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.error) {
+          setReviews(data);
+        } else {
+          console.error(data.error);
+        }
+      })
       .catch(error => console.error('Error fetching reviews:', error));
-  }, [id]);
+  }, [vendor_id]);
 
 
 let selected = "portfolio";
 
   
-  
+  const { id } = useParams();
   const [vendor, setVendor] = useState(null);
   const [showImages, setShowImages] = useState(true);
 
@@ -422,7 +430,7 @@ let selected = "portfolio";
             bit late in serving.
           </p>
         </div> */}
-      // </div>
+      </div>
      </div>
 
   );
