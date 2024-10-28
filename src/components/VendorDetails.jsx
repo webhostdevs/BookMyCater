@@ -4,22 +4,12 @@ import axios from 'axios';
 import { IoCallOutline } from "react-icons/io5";
 
 // const { id } = useParams();
-function Reviews=()=> {
- 
-
+function Reviews() {
   const [reviews, setReviews] = useState([]);
-
+  
   useEffect(() => {
-    // Fetch reviews for the specific vendor
-    fetch(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id}`)
-      .then(response => response.json())
-      .then(data => {
-        if (!data.error) {
-          setReviews(data);
-        } else {
-          console.error(data.error);
-        }
-      })
+    axios.get(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id}`)
+      .then(response => setReviews(response.data))
       .catch(error => console.error('Error fetching reviews:', error));
   }, [id]);
 
