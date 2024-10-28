@@ -381,7 +381,7 @@ const VendorDetails = () => {
 
       {/* COmments Section */}
 
-       <div className="w-150 mt-8">
+       <div className="w-full mt-8 p-4 m-3">
           {reviews.map(review => (
             <div key={review.id} className="comment max-w-[100%] bg-white p-4 rounded-lg shadow-md mb-4">
               <div className="user_info flex flex-row items-center space-x-4">
