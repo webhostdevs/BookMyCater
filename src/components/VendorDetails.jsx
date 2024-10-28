@@ -7,40 +7,8 @@ import { IoCallOutline } from "react-icons/io5";
 let selected = "portfolio";
 const VendorDetails = () => {
 
-  const vendorId = window.location.pathname.split('/').pop();
 
-const [formData, setFormData] = useState({
-  name: '',
-  email: '',
-  feedback: '',
-  rating: ''
-});
 
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.id]: e.target.value
-  });
-};
-
-const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  const response = await fetch('https://bookmycater.freewebhostmost.com/reviewsubmit.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ ...formData, vendor_id: vendorId, date: new Date().toISOString() })
-  });
-
-  if (response.ok) {
-    alert('Feedback submitted successfully');
-    setFormData({ name: '', email: '', feedback: '', rating: '' });
-  } else {
-    alert('Failed to submit feedback');
-  }
-};
 
   
   const { id } = useParams();
