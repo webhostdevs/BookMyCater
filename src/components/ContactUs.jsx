@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 const ContactForm = () => {
-  const [result, setResult] = useState("");
   return (
     <section className="flex flex-col items-center justify-center p-6 lg:px-10 gap-12 max-[425px]:p-0">
       <div className="w-full max-w-screen-lg">
@@ -33,10 +32,7 @@ const ContactForm = () => {
           </div>
 
           {/* Form */}
-          <form
-            onSubmit={onSubmit}
-            className="w-full md:w-1/2 space-y-6 p-6 bg-white shadow-lg rounded-lg"
-          >
+          <form className="w-full md:w-1/2 space-y-6 p-6 bg-white shadow-lg rounded-lg">
             <div className="flex flex-col">
               <label htmlFor="FN" className="font-semibold text-gray-800">
                 First Name
@@ -90,9 +86,7 @@ const ContactForm = () => {
             >
               SUBMIT
             </button>
-            <p className="text-center mt-4 text-indigo-600 font-medium">
-              {result}
-            </p>
+            <p className="text-center mt-4 text-indigo-600 font-medium"></p>
           </form>
         </div>
       </div>
