@@ -205,23 +205,139 @@ const VendorDetails = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
-      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 ml-10 mr-10">
-        {reviews.map((review, index) => (
-          <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-            <div className="flex items-center mb-2">
-              {[...Array(review.rating)].map((_, i) => (
-                <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-yellow-400">
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                </svg>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm mb-2">{review.message}</p>
-            <p className="text-gray-500 text-xs">{review.customer_name}</p>
-          </div>
-        ))}
-      </div>
+ <div className="review-section flex flex-col md:flex-row justify-between items-start mt-8 space-y-8 md:space-y-0">
+  {/* Ratings Section */}
+  <div className="reviews p-8 bg-white rounded-lg shadow-lg w-full md:w-1/3 h-[450px] max-[425px]:h-[290px]">
+    <div className="flex items-center mb-2">
+      {[...Array(4)].map((_, index) => (
+        <svg
+          key={index}
+          className="w-4 h-4 text-yellow-300 me-1"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 22 20"
+        >
+          <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+        </svg>
+      ))}
+      <svg
+        className="w-4 h-4 text-gray-200 me-1"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+      </svg>
+      <p className="ms-1 text-sm font-medium text-gray-700">
+        4.95 out of 5
+      </p>
     </div>
+    <p className="text-sm font-medium text-gray-600">1,745 global ratings</p>
+    {[
+      { label: "5 star", width: "70%", percentage: "70%" },
+      { label: "4 star", width: "17%", percentage: "17%" },
+      { label: "3 star", width: "8%", percentage: "8%" },
+      { label: "2 star", width: "4%", percentage: "4%" },
+      { label: "1 star", width: "1%", percentage: "1%" },
+    ].map((rating, index) => (
+      <div key={index} className="flex items-center mt-4">
+        <a href="#" className="text-sm font-medium text-black hover:underline text-nowrap">
+          {rating.label}
+        </a>
+        <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded">
+          <div className="h-5 bg-yellow-300 rounded" style={{ width: rating.width }}></div>
+        </div>
+        <span className="text-sm font-medium text-gray-700">{rating.percentage}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Feedback Form Section */}
+  <div className="feedback-form p-6 bg-white rounded-lg shadow-lg w-full md:w-2/3 mt-6 md:mt-0 ml-0 md:ml-4">
+    <h3 className="text-lg font-medium mb-4">Leave Your Feedback</h3>
+    <form className="space-y-4">
+      <div>
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          placeholder="Your Name"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          placeholder="Your Email"
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="feedback" className="block text-sm font-medium text-gray-700">
+          Feedback
+        </label>
+        <textarea
+          id="feedback"
+          className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          rows="4"
+          placeholder="Your feedback here..."
+          required
+        ></textarea>
+      </div>
+      <button type="submit" className="px-4 py-2 bg-black text-white rounded hover:bg-black/80">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  {/* Comments Section */}
+  <div className="comments-section flex flex-col p-4 space-y-4">
+    {[
+      {
+        name: "John Doe",
+        date: "2 days ago",
+        rating: 5,
+        text: "This is a great service! Food was delicious and the staff were very professional.",
+      },
+      {
+        name: "Jane Smith",
+        date: "3 days ago",
+        rating: 4,
+        text: "The setup was beautiful, and the food was amazing, but they were a bit late in serving.",
+      },
+    ].map((comment, index) => (
+      <div key={index} className="comment max-w-full bg-white p-4 rounded-lg shadow-md">
+        <div className="user-info flex flex-row items-center space-x-4">
+          <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              alt="User Profile"
+              className="object-cover w-full h-full"
+            />
+          </div>
+          <div className="names flex flex-col">
+            <p className="name text-lg font-semibold">{comment.name}</p>
+            <p className="date text-sm text-gray-500">{comment.date}</p>
+          </div>
+          <div className="user-ratings flex items-center ml-auto">
+            <span className="text-yellow-500">{'⭐ '.repeat(comment.rating).trim()}</span>
+            <p className="text-sm ml-1">{comment.rating}.0</p>
+          </div>
+        </div>
+        <p className="comment-text mt-2 text-gray-700">{comment.text}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 
