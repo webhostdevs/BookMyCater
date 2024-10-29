@@ -21,9 +21,31 @@ const VendorDetails = () => {
       .then((response) => setVendor(response.data))
       .catch((error) => console.error(error));
   }, [id]);
-  const { id2 } = useParams();
+  // const { id2 } = useParams();
 
   const [reviews, setReviews] = useState([]);
+
+  // Calculate rating counts and total reviews
+  const ratingCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+  reviews.forEach((review) => {
+    if (review.rating >= 1 && review.rating <= 5) { // Ensuring valid ratings
+      ratingCounts[review.rating] += 1;
+    }
+  });
+  const totalReviews = Object.values(ratingCounts).reduce((sum, count) => sum + count, 0);
+  
+  // Calculate weighted sum for accurate average
+  const weightedSum = (5 * ratingCounts[5]) + (4 * ratingCounts[4]) + (3 * ratingCounts[3]) + (2 * ratingCounts[2]) + (1 * ratingCounts[1]);
+  const rawAverageRating = totalReviews ? weightedSum / totalReviews : 0;
+  
+  // Ensure averageRating does not exceed 5
+  const averageRating = Math.min(parseFloat(rawAverageRating.toFixed(2)), 5);
+  
+  // Calculate filled and half stars for dynamic star display
+  const fullStars = Math.floor(averageRating);
+  const hasHalfStar = averageRating - fullStars >= 0.5;
+  
+
 
   useEffect(() => {
     // Fetch reviews for the specific vendor
@@ -323,68 +345,83 @@ const VendorDetails = () => {
             {/* reviews */}     
       <div className="review flex flex-col md:flex-row justify-between items-start mt-8">
         {/* Ratings Section */}
-        <div className="reviews flex flex-col justify-center p-8 bg-white rounded-lg shadow-lg w-full lg:w-1/2 md:w-1/3 h-[375px] max-[425px]:h-[490px]">
-          <h2 className="text-[40px]">
-            <b>Customer reviews</b>
-          </h2>
+        <div className="reviews flex flex-col justify-center p-8 bg-white rounded-lg shadow-lg w-full lg:w-1/2 md:w-1/3 h-auto max-[425px]:h-auto">
+ 
+  <h2 className="text-[40px]">
+    <b>Customer reviews</b>
+  </h2>
 
-          <div className="flex items-center mb-2">
-            {[...Array(4)].map((_, index) => (
-              <svg
-                key={index}
-                className="w-4 h-4 text-yellow-300 me-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-            ))}
-            <svg
-              className="w-4 h-4 text-white me-1"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <p className="ms-1 text-sm font-medium text-gray-700">
-              4.95 out of 5
-            </p>
-          </div>
+  {/* Display Dynamic Average Rating Stars */}
+  <div className="flex items-center mb-2">
+    {/* Full Stars */}
+    {[...Array(fullStars)].map((_, index) => (
+      <svg
+        key={index}
+        className="w-6 h-6 text-yellow-300 me-1"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+      </svg>
+    ))}
 
-          <p className="text-sm font-medium text-gray-600">
-            1,745 global ratings
-          </p>
+    {/* Half Star */}
+    {hasHalfStar && (
+      <svg
+        className="w-6 h-6 text-yellow-300 me-1"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 22 20"
+      >
+        <defs>
+          <mask id="halfStar">
+            <rect x="0" y="0" width="11" height="20" fill="white" />
+          </mask>
+        </defs>
+        <path
+          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+          fill="currentColor"
+          mask="url(#halfStar)"
+        />
+      </svg>
+    )}
 
-          {[
-            { label: "5 star", width: "70%", percentage: "70%" },
-            { label: "4 star", width: "17%", percentage: "17%" },
-            { label: "3 star", width: "8%", percentage: "8%" },
-            { label: "2 star", width: "4%", percentage: "4%" },
-            { label: "1 star", width: "1%", percentage: "1%" },
-          ].map((rating, index) => (
-            <div key={index} className="flex items-center mt-4">
-              <a
-                href="#"
-                className="text-sm font-medium text-black hover:underline text-nowrap"
-              >
-                {rating.label}
-              </a>
-              <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-                <div
-                  className="h-5 bg-yellow-300 rounded"
-                  style={{ width: rating.width }}
-                ></div>
-              </div>
-              <span className="text-sm font-medium text-gray-700">
-                {rating.percentage}
-              </span>
-            </div>
-          ))}
+    <p className="ms-1 text-sm font-medium text-gray-700">
+      {averageRating} out of 5
+    </p>
+  </div>
+
+  <p className="text-sm font-medium text-gray-600">
+    {totalReviews} global ratings
+  </p>
+
+  {/* Display Progress Bars for Each Rating */}
+  {[5, 4, 3, 2, 1].map((star) => {
+    const count = ratingCounts[star];
+    const percentage = totalReviews ? ((count / totalReviews) * 100).toFixed(0) : 0;
+    return (
+      <div key={star} className="flex items-center mt-4">
+        <a
+          href="#"
+          className="text-sm font-medium text-black hover:underline text-nowrap"
+        >
+          {star} star
+        </a>
+        <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded">
+          <div
+            className="h-5 bg-yellow-300 rounded"
+            style={{ width: `${percentage}%` }}
+          ></div>
         </div>
+        <span className="text-sm font-medium text-gray-700">
+          {percentage}%
+        </span>
+      </div>
+    );
+  })}
+  <p className="mt-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quibusdam fuga deserunt. Reiciendis error voluptatibus non, alias libero deserunt harum officia nobis velit doloremque consequatur tenetur explicabo recusandae cupiditate molestiae consectetur fugit fugiat similique! Corrupti fuga ex illum hic aperiam, asperiores nulla repudiandae id! Illo vitae explicabo harum! Quos assumenda cumque quisquam distinctio recusandae illo sed, quae earum eligendi, ex provident necessitatibus</p>
+</div>
 
         {/* New Separate Div Below Ratings */}
 
@@ -430,6 +467,27 @@ const VendorDetails = () => {
               />
             </div>
             <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Rating
+                </label>
+                <div className="flex space-x-4">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <div key={value} className="flex flex-col items-center">
+                      <label htmlFor={`rating-${value}`} className="mt-1 ml-2 ">{value}</label>
+                      <input
+                        type="radio"
+                        id={`rating-${value}`} // Assign a unique id to each radio button
+                        name="rating"
+                        value={value}
+                        required
+                        className="ml-2 scale-125 mb-5"
+                      />
+                      
+                    </div>
+                  ))}
+                </div>
+
+            <div>
               <label
                 className="block text-sm font-medium text-gray-700"
                 htmlFor="feedback"
@@ -444,24 +502,8 @@ const VendorDetails = () => {
                 required
                 name="feedback"
               ></textarea>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Rating
-                </label>
-                <div className="flex space-x-2">
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <label key={value}>
-                      {value}
-                      <input
-                        type="radio"
-                        name="rating"
-                        value={value}
-                        required
-                        className="ml-2"
-                      />
-                    </label>
-                  ))}
-                </div>
+              
+
               </div>
             </div>
             <input
