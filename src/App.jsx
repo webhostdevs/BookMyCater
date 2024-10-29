@@ -1,14 +1,15 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import React, { useState } from 'react';
-import HomePage from './components/HomePage';
-import VendorDetails from './components/VendorDetails';
-import Navbar from './components/Navbar';
-import AuthForm from './components/AuthForm';
-import ContactForm from './components/ContactUs';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useState } from "react";
+import HomePage from "./components/HomePage";
+import VendorDetails from "./components/VendorDetails";
+import Navbar from "./components/Navbar";
+import AuthForm from "./components/AuthForm";
+import ContactForm from "./components/ContactUs";
+import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [showAuthForm, setShowAuthForm] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -19,19 +20,18 @@ function App() {
   return (
     <Router>
       <div className="bg-white min-h-screen w-full">
-        <Navbar 
-          searchTerm={searchTerm} 
-          setSearchTerm={setSearchTerm} 
-          toggleAuthForm={toggleAuthForm} 
+        <Navbar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          toggleAuthForm={toggleAuthForm}
           isLoggedIn={isLoggedIn}
-          setLoggedIn={setLoggedIn} 
+          setLoggedIn={setLoggedIn}
         />
 
         <Routes>
           <Route path="/" element={<HomePage searchTerm={searchTerm} />} />
           <Route path="/vendor/:id" element={<VendorDetails />} />
-          <Route path="/ContactUs" element={<ContactForm />} />
-
+          <Route path="/contactus" element={<ContactForm />} />
         </Routes>
 
         {showAuthForm && (
@@ -41,6 +41,7 @@ function App() {
             </div>
           </div>
         )}
+        <Footer></Footer>
       </div>
     </Router>
   );
