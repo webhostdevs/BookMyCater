@@ -420,7 +420,7 @@ const VendorDetails = () => {
       </div>
     );
   })}
-  <p className="mt-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius quibusdam fuga deserunt. Reiciendis error voluptatibus non, alias libero deserunt harum officia nobis velit doloremque consequatur tenetur explicabo recusandae cupiditate molestiae consectetur fugit fugiat similique! Corrupti fuga ex illum hic aperiam, asperiores nulla repudiandae id! Illo vitae explicabo harum! Quos assumenda cumque quisquam distinctio recusandae illo sed, quae earum eligendi, ex provident necessitatibus</p>
+  
 </div>
 
         {/* New Separate Div Below Ratings */}
