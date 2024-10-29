@@ -49,8 +49,14 @@ function AuthForm({ onClose }) {
       const result = await response.json();
       if (result.success) {
         setSuccessMessage(`${isLogin ? 'Login' : 'Signup'} successful!`);
-        onClose();
-        alert(`${isLogin ? 'Login' : 'Signup'} successful!`);
+        
+        // Redirect to the admin page after login
+        if (isLogin && result.redirect_url) {
+          window.location.href = result.redirect_url;
+        } else {
+          onClose(); // Close form for signup or if no redirect URL is provided
+          alert(`${isLogin ? 'Login' : 'Signup'} successful!`);
+        }
       } else {
         setErrorMessage(result.message || 'An error occurred');
       }
