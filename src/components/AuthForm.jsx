@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function AuthForm({ onClose }) {
   const [isLogin, setIsLogin] = useState(true);
+  const [username, setUsername] = useState(''); // New state for username
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
@@ -16,8 +17,10 @@ function AuthForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !password) {
-      setErrorMessage('Please provide both email and password');
+
+    // Basic validation
+    if ((!isLogin && !username) || !email || !password) {
+      setErrorMessage('Please provide all required fields');
       return;
     }
 
@@ -30,21 +33,24 @@ function AuthForm({ onClose }) {
       ? 'https://bookmycater.freewebhostmost.com/login.php'
       : 'https://bookmycater.freewebhostmost.com/signup.php';
 
+    const payload = isLogin
+      ? { email, password }
+      : { username, email, password };
+
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(payload),
       });
 
       const result = await response.json();
       if (result.success) {
         setSuccessMessage(`${isLogin ? 'Login' : 'Signup'} successful!`);
-        // Close the form and change the button to Logout
         onClose();
-        alert(`${isLogin ? 'Login' : 'Signup'} successful!`); // Success message
+        alert(`${isLogin ? 'Login' : 'Signup'} successful!`);
       } else {
         setErrorMessage(result.message || 'An error occurred');
       }
@@ -55,9 +61,8 @@ function AuthForm({ onClose }) {
 
   return (
     <div className="relative">
-      {/* Close icon */}
       <button className="absolute top-2 right-2 text-gray-500" onClick={onClose}>
-        &times; {/* You can replace this with an SVG icon or an image */}
+        &times;
       </button>
 
       <h2 className="text-lg font-bold mb-4">{isLogin ? 'Login' : 'Signup'}</h2>
@@ -65,6 +70,16 @@ function AuthForm({ onClose }) {
       {successMessage && <p className="text-green-500">{successMessage}</p>}
       
       <form onSubmit={handleSubmit}>
+        {!isLogin && (
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="border p-2 mb-2 w-full"
+          />
+        )}
         <input
           type="email"
           placeholder="Email"
