@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { IoCallOutline } from "react-icons/io5";
 import { LiaStarSolid } from "react-icons/lia";
-import InfoPopup from "./ContactInfo";
 let selected = "portfolio";
 const VendorDetails = () => {
   const { id } = useParams();
