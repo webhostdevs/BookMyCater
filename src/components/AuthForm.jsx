@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
 
 function AuthForm({ onClose }) {
   const [isLogin, setIsLogin] = useState(true);
