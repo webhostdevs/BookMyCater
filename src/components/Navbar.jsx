@@ -34,7 +34,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
         ) : (
           <button 
             onClick={toggleAuthForm} 
-           className="flex items-center bg-gray-800 text-white px-1 py-1 hover:bg-gray-900 transition"
+           className="flex items-center bg-gray-800 text-white px-4 py-1 hover:bg-gray-900 transition"
           >
             <i className="fas fa-user mr-2"></i> Login
           </button>
