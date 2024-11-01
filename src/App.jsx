@@ -43,7 +43,7 @@ function App() {
             </div>
           </div>
         )}
-        <Footer></Footer>
+        <Footer />
       </div>
     </Router>
   );
