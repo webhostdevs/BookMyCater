@@ -7,6 +7,7 @@ import AuthForm from "./components/AuthForm";
 import ContactForm from "./components/ContactUs";
 import "./App.css";
 import Footer from "./components/Footer";
+import NewVendor from "./components/NewVendor";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<HomePage searchTerm={searchTerm} />} />
           <Route path="/vendor/:id" element={<VendorDetails />} />
           <Route path="/contactus" element={<ContactForm />} />
+          <Route path="/Admin" element={<NewVendor />} />
         </Routes>
 
         {showAuthForm && (
