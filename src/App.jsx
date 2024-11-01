@@ -8,7 +8,6 @@ import ContactForm from "./components/ContactUs";
 import "./App.css";
 import Footer from "./components/Footer";
 import NewVendor from "./components/NewVendor.jsx";
-
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showAuthForm, setShowAuthForm] = useState(false);
@@ -43,7 +42,7 @@ function App() {
             </div>
           </div>
         )}
-        <Footer />
+        <Footer></Footer>
       </div>
     </Router>
   );
