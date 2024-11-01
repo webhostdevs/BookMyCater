@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+import React from "react";
 
 const NewVendor = () => {
   return (
