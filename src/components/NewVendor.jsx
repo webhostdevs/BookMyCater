@@ -1,3 +1,7 @@
+<div className="Container ">
+      <form method="POST" enctype="multipart/form-data" action="backend.php">
+        <div className="px-8 py-6 flex flex-col items-center justify-center bg-gray-50 rounded-lg shadow-lg max-w-4xl mx-auto mt-10 space-y-10">
+     
 {/*1. Vendor Information Section */}
           <section className="space-y-6 p-7 bg-gray-50 rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold text-gray-800">
@@ -700,3 +704,7 @@
               className="mx-auto block px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </section>
+
+        </div>
+      </form>
+    </div>
