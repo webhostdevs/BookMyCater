@@ -33,7 +33,7 @@ function App() {
           <Route path="/" element={<HomePage searchTerm={searchTerm} />} />
           <Route path="/vendor/:id" element={<VendorDetails />} />
           <Route path="/contactus" element={<ContactForm />} />
-          <Route path="/Admin" element={<NewVendor />} />
+          <Route path="/admin" element={<NewVendor />} />
         </Routes>
 
         {showAuthForm && (
