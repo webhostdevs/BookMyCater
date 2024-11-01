@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
-const HomePage = () => {
+const NewVendor = () => {
   return (
     <div className="Container ">
       <form method="POST" enctype="multipart/form-data" action="backend.php">
@@ -725,4 +725,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default NewVendor;
