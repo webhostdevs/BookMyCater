@@ -23,8 +23,12 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
        <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">
           Contact
         </Link>  
+        
         {/* Login/Logout Button */}
         {isLoggedIn ? (
+      <Link to="/Admin" className="text-gray-700 hover:text-black transition">
+         NewVendor
+        </Link> 
           <button 
             onClick={handleLogout} 
             className="flex items-center text-gray-700 hover:text-black transition"
