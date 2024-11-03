@@ -160,6 +160,12 @@ const HomePage = () => {
                 <h2 className="text-lg text-black font-semibold">
                   Starting from: ₹{vendor.pricing_per_event}
                 </h2>
+                <p 
+                  className="text-black-700 flex items-center bg-grey"
+                  style={{ fontSize: "1rem", fontWeight: "200" }}
+                  >
+                  Min:{vendor.min_people}</p>
+                <p>Max:{vendor.max_people}</p>
               </div>
             </Link>
           ))
