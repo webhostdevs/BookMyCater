@@ -130,7 +130,7 @@ const HomePage = () => {
             <Link
               to={`/vendor/${vendor.id}`}
               key={vendor.id}
-              className="shadow-sm p-4 bg-white rounded-md flex flex-col overflow-hidden transition-transform duration-200 transform hover:shadow-lg"
+              className="shadow-md p-4 bg-white rounded-md flex flex-col overflow-hidden transition-transform duration-200 transform hover:shadow-lg"
             >
               <div className="h-48">
                 <img
