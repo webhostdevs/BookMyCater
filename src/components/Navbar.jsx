@@ -21,7 +21,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
         <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">
           Contact
         </Link>  
-        <Link to="/admin" className="text-gray-700 hover:text-black transition">
+        <Link to="https://bookmycater.freewebhostmost.com/admin.html" className="text-gray-700 hover:text-black transition">
               NewVendor
             </Link> 
         {/* Login/Logout Button */}
