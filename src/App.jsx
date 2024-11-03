@@ -7,7 +7,7 @@ import AuthForm from "./components/AuthForm";
 import ContactForm from "./components/ContactUs";
 import "./App.css";
 import Footer from "./components/Footer";
-import NewVendor from "./components/NewVendor.jsx";
+import NewVendor from "./components/NewVendor";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showAuthForm, setShowAuthForm] = useState(false);
