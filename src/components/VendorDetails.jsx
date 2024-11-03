@@ -113,7 +113,7 @@ const VendorDetails = () => {
                            
               <a
                 href={`tel:${vendor.phone_number}`}
-                className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white items-center gap-2 flex flex-col"
+                className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white items-center gap-2 flex"
               >
                                 <IoCallOutline /> Contact us              
               </a>
