@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
 import { IoCallOutline } from "react-icons/io5";
 import { LiaStarSolid } from "react-icons/lia";
 let selected = "portfolio";
@@ -8,6 +9,7 @@ const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null);
   const [showImages, setShowImages] = useState(true);
+  const [ShowPlates, setShowPlates] = useState(false);
 
   const openWhatsApp = () => {
     window.open(`https://wa.me/${vendor.phone_number}`, "_blank");
@@ -28,33 +30,42 @@ const VendorDetails = () => {
   // Calculate rating counts and total reviews
   const ratingCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
   reviews.forEach((review) => {
-    if (review.rating >= 1 && review.rating <= 5) { // Ensuring valid ratings
+    if (review.rating >= 1 && review.rating <= 5) {
+      // Ensuring valid ratings
       ratingCounts[review.rating] += 1;
     }
   });
-  const totalReviews = Object.values(ratingCounts).reduce((sum, count) => sum + count, 0);
-  
+  const totalReviews = Object.values(ratingCounts).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+
   // Calculate weighted sum for accurate average
-  const weightedSum = (5 * ratingCounts[5]) + (4 * ratingCounts[4]) + (3 * ratingCounts[3]) + (2 * ratingCounts[2]) + (1 * ratingCounts[1]);
+  const weightedSum =
+    5 * ratingCounts[5] +
+    4 * ratingCounts[4] +
+    3 * ratingCounts[3] +
+    2 * ratingCounts[2] +
+    1 * ratingCounts[1];
   const rawAverageRating = totalReviews ? weightedSum / totalReviews : 0;
-  
+
   // Ensure averageRating does not exceed 5
   const averageRating = Math.min(parseFloat(rawAverageRating.toFixed(2)), 5);
-  
+
   // Calculate filled and half stars for dynamic star display
   const fullStars = Math.floor(averageRating);
   const hasHalfStar = averageRating - fullStars >= 0.5;
-  
-const [visibleReviews, setVisibleReviews] = useState(3);
-const [showMore, setShowMore] = useState(false);
 
-// Sort reviews by rating (highest first)
-const sortedReviews = [...reviews].sort((a, b) => b.rating - a.rating);
+  const [visibleReviews, setVisibleReviews] = useState(3);
+  const [showMore, setShowMore] = useState(false);
 
-const handleShowMore = () => {
-  setVisibleReviews(sortedReviews.length); // Show all reviews
-  setShowMore(true);
-};
+  // Sort reviews by rating (highest first)
+  const sortedReviews = [...reviews].sort((a, b) => b.rating - a.rating);
+
+  const handleShowMore = () => {
+    setVisibleReviews(sortedReviews.length); // Show all reviews
+    setShowMore(true);
+  };
 
   useEffect(() => {
     // Fetch reviews for the specific vendor
@@ -113,11 +124,12 @@ const handleShowMore = () => {
                            
               <div className="flex items-center gap-2">
                                
-                <div className="Rating bg-black text-white p-3 rounded-full text-lg font-semibold">
-                                    {vendor.average_rating}               
+                <div className="Rating bg-black text-white w-[54px] p-3 rounded-full text-lg font-semibold">
+                                    {averageRating}               
                 </div>
-                               <p className="text-sm sm:text-base">4 Reviews</p>
-                             
+                               
+                <p className="text-sm sm:text-base"> {totalReviews} Reviews</p> 
+                           
               </div>
                          
             </div>
@@ -214,15 +226,16 @@ const handleShowMore = () => {
              
       </div>
             {/* Portfolio Section */}     
-      <div className="portfolio flex flex-col bg-white text-black p-6  h-[500px] rounded-lg shadow-lg">
+      <div className="portfolio flex flex-col bg-white text-black p-6 overflow-x-hidden  max-h-[900px] rounded-lg shadow-lg">
                 {/* Top 20% section for buttons */}       
-        <div className="flex flex-row items-center justify-evenly h-[10%] border-b-2">
+        <div className="flex flex-row items-center justify-evenly h-[10%] border-b-2 pb-3">
                    
           <button
             className="hover:text-blue-300"
             onClick={() => {
               selected = "portfolio";
               setShowImages(true);
+              setShowPlates(false);
             }}
           >
                         Portfolio          
@@ -232,40 +245,138 @@ const handleShowMore = () => {
             className="hover:text-blue-300"
             onClick={() => {
               selected = "album";
+              setShowPlates(true);
               setShowImages(false);
             }}
           >
-                        Album          
+                        Type of Service          
           </button>
                    
-          <button
+          {/* <button
             className="hover:text-blue-300"
             onClick={() => {
               selected = "images";
               setShowImages(false);
+              setShowPlates(false);
             }}
           >
                         Images          
-          </button>
+          </button> */}
                     
         </div>
                          {/* Main container occupying 80% height */}         
-        <div className="main flex flex-wrap h-[80%] overflow-y-scroll mt-[20px]">
-           
-          {showImages &&
-            vendor.portfolio
-              .split(",")
-              .slice(0, 105)
-              .map((fileName, index) => (
+        <div className="main h-[80%] overflow-y-scroll w-full p-6 bg-gradient-to-br">
+          {showImages && (
+            <div className="flex flex-row flex-wrap max-[495px]:justify-center">
+              {vendor.portfolio
+                .split(",")
+                .slice(0, 105)
+                .map((fileName, index) => (
+                  <img
+                    key={index}
+                    src={`https://bookmycater.freewebhostmost.com/${
+                      vendor.folder_location
+                    }/${fileName.trim()}`}
+                    alt="Prev Event Images"
+                    className="w-[160px] h-[160px] object-cover m-1 mb-0.5 mt-0.5"
+                  />
+                ))}
+            </div>
+          )}
+
+          {ShowPlates && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+              {/* Meal Box Card 1 */}
+
+              <div className="p-8 bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform flex flex-col items-center">
                 <img
-                  key={index}
-                  src={`https://bookmycater.freewebhostmost.com/${
-                    vendor.folder_location
-                  }/${fileName.trim()}`}
-                  alt="Prev Event Images"
-                  className="w-[160px] h-[160px] object-cover m-1 mb-0.5 mt-0.5"
+                  src="https://craftmyplate.com/wp-content/uploads/2024/03/Clip-path-group-1.png"
+                  alt="Meal Box"
+                  className="max-w-[80%] max-h-[80%] object-cover rounded-t-lg"
                 />
-              ))}
+                <div className="mt-4 text-center">
+                  <h2 className="text-3xl font-semibold text-gray-800">
+                    Meal Box
+                  </h2>
+                  <p className="text-gray-600">From 10 Guests onwards</p>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Perfect for any event with a variety of meal options from
+                    starters to mains and desserts.
+                  </p>
+                  <div className="mt-4 text-gray-700 font-semibold gap-2 flex flex-col items-center">
+                    Available options:
+                    {/* <select className="ml-2 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 text-gray-700">
+                      <option value="3"></option>
+                      <option value="5">5</option>
+                      <option value="8">8</option>
+                    </select> */}
+                    <img
+                      src="https://craftmyplate.com/wp-content/uploads/2024/03/Frame-1000005335-1.png"
+                      alt=""
+                      className="w-[40%] h-[auto] max-[1025px]:w-[90%] object-cover m-auto p-auto"
+                    />
+                    <button className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]">
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Meal Box Card 2 */}
+              <div className="p-8 bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform  flex flex-col items-center">
+                <img
+                  src="https://craftmyplate.com/wp-content/uploads/2024/03/Frame-1000005361-1.png"
+                  alt="Meal Box"
+                  className="max-w-[80%] max-h-[80%] object-cover rounded-t-lg"
+                />
+                <div className="mt-4 text-center">
+                  <h2 className="text-3xl font-semibold text-gray-800">
+                    Delivery Box
+                  </h2>
+                  <p className="text-gray-600">From 10-120 Guests</p>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Perfect for your farm-house parties, small gatherings, and
+                    get-togethers! Explore a wide range of menu options at
+                    unbeatable prices.
+                  </p>
+                  <button className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+
+              {/* Meal Box Card 3 */}
+              <div className="p-8 bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform  flex flex-col items-center">
+                <img
+                  src="https://craftmyplate.com/wp-content/uploads/2024/03/Clip-path-group-3.png"
+                  alt="Meal Box"
+                  className="max-w-[80%] max-h-[80%] object-cover rounded-t-lg"
+                />
+                <div className="mt-4 text-center">
+                  <h2 className="text-3xl font-semibold text-gray-800">
+                    Catering
+                  </h2>
+                  <p className="text-gray-600">From 10 Guests onwards</p>
+                  <p className="text-gray-700 leading-relaxed mt-4">
+                    Best for your extravagant events like a wedding! Just choose
+                    one of our catering menu, get creative and customize it as
+                    you want. The choices are limitless and the flavours.
+                  </p>
+                  {/* <div className="mt-4 text-gray-700 font-semibold">
+                    Available options:
+                    <select className="ml-2 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 text-gray-700">
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div> */}
+                  <button className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
                
       </div>
@@ -355,82 +466,82 @@ const handleShowMore = () => {
       <div className="review flex flex-col md:flex-row justify-between items-start mt-8">
         {/* Ratings Section */}
         <div className="reviews flex flex-col justify-center p-8 bg-white rounded-lg shadow-lg w-full lg:w-1/2 md:w-1/3 h-auto max-[425px]:h-auto">
- 
-  <h2 className="text-[40px]">
-    <b>Customer reviews</b>
-  </h2>
+          <h2 className="text-[40px]">
+            <b>Customer reviews</b>
+          </h2>
 
-  {/* Display Dynamic Average Rating Stars */}
-  <div className="flex items-center mb-2">
-    {/* Full Stars */}
-    {[...Array(fullStars)].map((_, index) => (
-      <svg
-        key={index}
-        className="w-6 h-6 text-yellow-300 me-1"
-        aria-hidden="true"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-      </svg>
-    ))}
+          {/* Display Dynamic Average Rating Stars */}
+          <div className="flex items-center mb-2">
+            {/* Full Stars */}
+            {[...Array(fullStars)].map((_, index) => (
+              <svg
+                key={index}
+                className="w-6 h-6 text-yellow-300 me-1"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 22 20"
+              >
+                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+              </svg>
+            ))}
 
-    {/* Half Star */}
-    {hasHalfStar && (
-      <svg
-        className="w-6 h-6 text-yellow-300 me-1"
-        aria-hidden="true"
-        fill="currentColor"
-        viewBox="0 0 22 20"
-      >
-        <defs>
-          <mask id="halfStar">
-            <rect x="0" y="0" width="11" height="20" fill="white" />
-          </mask>
-        </defs>
-        <path
-          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-          fill="currentColor"
-          mask="url(#halfStar)"
-        />
-      </svg>
-    )}
+            {/* Half Star */}
+            {hasHalfStar && (
+              <svg
+                className="w-6 h-6 text-yellow-300 me-1"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 22 20"
+              >
+                <defs>
+                  <mask id="halfStar">
+                    <rect x="0" y="0" width="11" height="20" fill="white" />
+                  </mask>
+                </defs>
+                <path
+                  d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                  fill="currentColor"
+                  mask="url(#halfStar)"
+                />
+              </svg>
+            )}
 
-    <p className="ms-1 text-sm font-medium text-gray-700">
-      {averageRating} out of 5
-    </p>
-  </div>
+            <p className="ms-1 text-sm font-medium text-gray-700 text-nowrap">
+              {averageRating} out of 5
+            </p>
+          </div>
 
-  <p className="text-sm font-medium text-gray-600">
-    {totalReviews} global ratings
-  </p>
+          <p className="text-sm font-medium text-gray-600 ">
+            {totalReviews} global ratings
+          </p>
 
-  {/* Display Progress Bars for Each Rating */}
-  {[5, 4, 3, 2, 1].map((star) => {
-    const count = ratingCounts[star];
-    const percentage = totalReviews ? ((count / totalReviews) * 100).toFixed(0) : 0;
-    return (
-      <div key={star} className="flex items-center mt-4">
-        <a
-          href="#"
-          className="text-sm font-medium text-black hover:underline text-nowrap"
-        >
-          {star} star
-        </a>
-        <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded">
-          <div
-            className="h-5 bg-yellow-300 rounded"
-            style={{ width: `${percentage}%` }}
-          ></div>
+          {/* Display Progress Bars for Each Rating */}
+          {[5, 4, 3, 2, 1].map((star) => {
+            const count = ratingCounts[star];
+            const percentage = totalReviews
+              ? ((count / totalReviews) * 100).toFixed(0)
+              : 0;
+            return (
+              <div key={star} className="flex items-center mt-4">
+                <a
+                  href="#"
+                  className="text-sm font-medium text-black hover:underline text-nowrap"
+                >
+                  {star} star
+                </a>
+                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded">
+                  <div
+                    className="h-5 bg-yellow-300 rounded"
+                    style={{ width: `${percentage}%` }}
+                  ></div>
+                </div>
+                <span className="text-sm font-medium text-gray-700">
+                  {percentage}%
+                </span>
+              </div>
+            );
+          })}
         </div>
-        <span className="text-sm font-medium text-gray-700">
-          {percentage}%
-        </span>
-      </div>
-    );
-  })}
-  
-</div>
 
         {/* New Separate Div Below Ratings */}
 
@@ -476,43 +587,42 @@ const handleShowMore = () => {
               />
             </div>
             <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Rating
-                </label>
-                <div className="flex space-x-4">
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <div key={value} className="flex flex-col items-center">
-                      <label htmlFor={`rating-${value}`} className="mt-1 ml-2 ">{value}</label>
-                      <input
-                        type="radio"
-                        id={`rating-${value}`} // Assign a unique id to each radio button
-                        name="rating"
-                        value={value}
-                        required
-                        className="ml-2 scale-125 mb-5"
-                      />
-                      
-                    </div>
-                  ))}
-                </div>
-
-            <div>
-              <label
-                className="block text-sm font-medium text-gray-700"
-                htmlFor="feedback"
-              >
-                Feedback
+              <label className="block text-sm font-medium text-gray-700">
+                Rating
               </label>
-              <textarea
-                id="feedback"
-                className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                rows="4"
-                placeholder="Your feedback here..."
-                required
-                name="feedback"
-              ></textarea>
-              
+              <div className="flex space-x-4">
+                {[1, 2, 3, 4, 5].map((value) => (
+                  <div key={value} className="flex flex-col items-center">
+                    <label htmlFor={`rating-${value}`} className="mt-1 ml-2 ">
+                      {value}
+                    </label>
+                    <input
+                      type="radio"
+                      id={`rating-${value}`} // Assign a unique id to each radio button
+                      name="rating"
+                      value={value}
+                      required
+                      className="ml-2 scale-125 mb-5"
+                    />
+                  </div>
+                ))}
+              </div>
 
+              <div>
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor="feedback"
+                >
+                  Feedback
+                </label>
+                <textarea
+                  id="feedback"
+                  className="mt-1 p-2 w-full border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+                  rows="4"
+                  placeholder="Your feedback here..."
+                  required
+                  name="feedback"
+                ></textarea>
               </div>
             </div>
             <input
@@ -532,49 +642,50 @@ const handleShowMore = () => {
         </div>
       </div>
             {/* COmments Section */}     
-      <div className="w-full mt-8 p-4 m-3">
-    {sortedReviews.slice(0, visibleReviews).map((review) => (
-      <div
-        key={review.id}
-        className="mr-10 comment max-w-[100%] bg-white p-4 rounded-lg shadow-md mb-4"
-      >
-        <div className="user_info flex flex-row items-center space-x-4">
-          <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              alt="User Profile"
-              className="object-cover w-full h-full"
-            />
+      <div className="max-w-[100%] mt-12 m-3 p-4 bg-white rounded-lg shadow-md">
+        <h3 className="text-[40px] font-medium mb-4 p-4">What People Think</h3>
+        {sortedReviews.slice(0, visibleReviews).map((review) => (
+          <div
+            key={review.id}
+            className="mr-10 comment max-w-[100%] bg-white p-4 rounded-lg shadow-md mb-4"
+          >
+            <div className="user_info flex flex-row items-center space-x-4">
+              <div className="pfp rounded-full w-12 h-12 overflow-hidden border border-gray-300 max-[375px]: hidden">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  alt="User Profile"
+                  className="object-cover w-full h-full "
+                />
+              </div>
+              <div className="names flex flex-col">
+                <p className="name text-lg font-semibold">{review.name}</p>
+                <p className="date text-sm text-gray-500">
+                  {new Date(review.date).toLocaleDateString()}
+                </p>
+              </div>
+              <div className="user_ratings flex items-center mb-5 ml-auto">
+                <span className="text-yellow-500 flex-row flex">
+                  {Array.from({ length: review.rating }).map((_, index) => (
+                    <LiaStarSolid key={index} />
+                  ))}
+                </span>
+                <p className="text-sm ml-1">{review.rating}.0</p>
+              </div>
+            </div>
+            <p className="comment_text mt-2 text-gray-700">{review.feedback}</p>
           </div>
-          <div className="names flex flex-col">
-            <p className="name text-lg font-semibold">{review.name}</p>
-            <p className="date text-sm text-gray-500">
-              {new Date(review.date).toLocaleDateString()}
-            </p>
-          </div>
-          <div className="user_ratings flex items-center mb-5 ml-auto">
-            <span className="text-yellow-500 flex-row flex">
-              {Array.from({ length: review.rating }).map((_, index) => (
-                <LiaStarSolid key={index} />
-              ))}
-            </span>
-            <p className="text-sm ml-1">{review.rating}.0</p>
-          </div>
-        </div>
-        <p className="comment_text mt-2 text-gray-700">{review.feedback}</p>
-      </div>
-    ))}
+        ))}
 
-    {/* Display "View More" button if more than 3 reviews exist */}
-    {!showMore && sortedReviews.length > 3 && (
-      <button
-        onClick={handleShowMore}
-        className="text-blue-500 mt-4 hover:underline"
-      >
-        View More
-      </button>
-    )}
-  </div>
+        {/* Display "View More" button if more than 3 reviews exist */}
+        {!showMore && sortedReviews.length > 3 && (
+          <button
+            onClick={handleShowMore}
+            className="text-blue-500 mt-4 hover:underline"
+          >
+            View More
+          </button>
+        )}
+      </div>
     </div>
   );
 };
