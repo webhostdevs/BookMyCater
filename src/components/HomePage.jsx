@@ -161,11 +161,12 @@ const HomePage = () => {
                   Starting from: ₹{vendor.pricing_per_event}
                 </h2>
                 <div
-                  className="text-black-300 flex items-center bg-grey"
+                  className="text-white-600 flex items-center"
                   >
-                <p style={{ backgroundColor:"grey", fontWeight: "100" }}>
+                <p 
+                  style={{ backgroundColor:"black", fontWeight: "100", margin:"10px" }}>
                   Min:{vendor.min_people}</p>
-                <p style={{ backgroundColor:"grey", fontWeight: "100" }} >
+                <p style={{ backgroundColor:"black", fontWeight: "100" }} >
                   Max:{vendor.max_people}</p>
                   </div>
               </div>
