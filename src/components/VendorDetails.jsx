@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 import { IoCallOutline } from "react-icons/io5";
@@ -113,7 +113,7 @@ const VendorDetails = () => {
                            
               <a
                 href={`tel:${vendor.phone_number}`}
-                className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white flex items-center gap-2"
+                className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white items-center gap-2"
               >
                                 <IoCallOutline /> Contact us              
               </a>
@@ -315,9 +315,12 @@ const VendorDetails = () => {
                       alt=""
                       className="w-[40%] h-[auto] max-[1025px]:w-[90%] object-cover m-auto p-auto"
                     />
-                    <button className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]">
+                    <Link
+                      to="/events"
+                      className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]"
+                    >
                       Learn More
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -329,19 +332,25 @@ const VendorDetails = () => {
                   alt="Meal Box"
                   className="max-w-[80%] max-h-[80%] object-cover rounded-t-lg"
                 />
-                <div className="mt-4 text-center">
+                <div className="mt-4 text-center flex flex-col">
                   <h2 className="text-3xl font-semibold text-gray-800">
                     Delivery Box
                   </h2>
                   <p className="text-gray-600">From 10-120 Guests</p>
-                  <p className="text-gray-700 leading-relaxed mt-4">
-                    Perfect for your farm-house parties, small gatherings, and
-                    get-togethers! Explore a wide range of menu options at
-                    unbeatable prices.
-                  </p>
-                  <button className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]">
-                    Learn More
-                  </button>
+                  <div className="flex flex-col gap-3 items-center">
+                    <p className="text-gray-700 leading-relaxed mt-4">
+                      Perfect for your farm-house parties, small gatherings, and
+                      get-togethers! Explore a wide range of menu options at
+                      unbeatable prices.
+                    </p>
+
+                    <Link
+                      to="/events"
+                      className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
               </div>
 
@@ -357,22 +366,21 @@ const VendorDetails = () => {
                     Catering
                   </h2>
                   <p className="text-gray-600">From 10 Guests onwards</p>
-                  <p className="text-gray-700 leading-relaxed mt-4">
-                    Best for your extravagant events like a wedding! Just choose
-                    one of our catering menu, get creative and customize it as
-                    you want. The choices are limitless and the flavours.
-                  </p>
-                  {/* <div className="mt-4 text-gray-700 font-semibold">
-                    Available options:
-                    <select className="ml-2 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 text-gray-700">
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="6">6</option>
-                    </select>
-                  </div> */}
-                  <button className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]">
-                    Learn More
-                  </button>
+                  <div className="flex flex-col gap-3 items-center">
+                    <p className="text-gray-700 leading-relaxed mt-4">
+                      Best for your extravagant events like a wedding! Just
+                      choose one of our catering menu, get creative and
+                      customize it as you want. The choices are limitless and
+                      the flavours.
+                    </p>
+
+                    <Link
+                      to="/events"
+                      className="max-w-[70%] bg-black hover:bg-gray-800 text-white py-2 mt-2 px-4 rounded-[20px]"
+                    >
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
