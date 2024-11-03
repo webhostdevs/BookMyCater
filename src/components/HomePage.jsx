@@ -164,9 +164,9 @@ const HomePage = () => {
                   className="text-white-600 flex items-center"
                   >
                 <p 
-                  style={{ backgroundColor:"black", fontWeight: "100", margin:"10px" }}>
+                  style={{ backgroundColor:"black", margin:"10px" }}>
                   Min:{vendor.min_people}</p>
-                <p style={{ backgroundColor:"black", fontWeight: "100" }} >
+                <p style={{ backgroundColor:"black" }} >
                   Max:{vendor.max_people}</p>
                   </div>
               </div>
