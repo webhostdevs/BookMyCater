@@ -280,7 +280,7 @@ const VendorDetails = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Meal Box Card 1 */}
 
-              <div className="p-8 bg-white rounded-lg shadow-md hover:shadow-sm transition-all duration-300 transform flex flex-col items-center">
+              <div className="p-8 bg-white rounded-lg shadow-md transition-all duration-300 transform flex flex-col items-center">
                 <img
                   src="https://craftmyplate.com/wp-content/uploads/2024/03/Clip-path-group-1.png"
                   alt="Meal Box"
@@ -318,7 +318,7 @@ const VendorDetails = () => {
               </div>
 
               {/* Meal Box Card 2 */}
-              <div className="p-8 bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform  flex flex-col items-center">
+              <div className="p-8 bg-white rounded-lg shadow-md  transition-all duration-300 transform  flex flex-col items-center">
                 <img
                   src="https://craftmyplate.com/wp-content/uploads/2024/03/Frame-1000005361-1.png"
                   alt="Meal Box"
@@ -347,7 +347,7 @@ const VendorDetails = () => {
               </div>
 
               {/* Meal Box Card 3 */}
-              <div className="p-8 bg-white rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 transform  flex flex-col items-center">
+              <div className="p-8 bg-white rounded-lg shadow-md transition-all duration-300 transform  flex flex-col items-center">
                 <img
                   src="https://craftmyplate.com/wp-content/uploads/2024/03/Clip-path-group-3.png"
                   alt="Meal Box"
