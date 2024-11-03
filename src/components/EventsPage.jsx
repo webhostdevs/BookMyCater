@@ -18,37 +18,37 @@ const EventsPage = () => {
       title: "Corporate Event",
       description: "Professional catering for business events",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Anniversary",
       description: "Celebrate love with our special anniversary menus",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Baby Shower",
       description: "Perfect menus for your baby shower",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Graduation",
       description: "Celebrate milestones with delicious food",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Holiday Gathering",
       description: "Enjoy seasonal menus for your holiday gatherings",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Other Special Events",
       description: "Custom menus for your unique celebration",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
   ];
 
