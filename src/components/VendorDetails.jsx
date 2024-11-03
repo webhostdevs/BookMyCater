@@ -8,8 +8,8 @@ let selected = "Services";
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null);
-  const [showImages, setShowImages] = useState(true);
-  const [ShowPlates, setShowPlates] = useState(false);
+  const [showImages, setShowImages] = useState(false);
+  const [ShowPlates, setShowPlates] = useState(true);
 
   const openWhatsApp = () => {
     window.open(`https://wa.me/${vendor.phone_number}`, "_blank");
