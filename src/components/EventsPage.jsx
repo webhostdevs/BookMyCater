@@ -6,13 +6,13 @@ const EventsPage = () => {
       title: "Birthday Party",
       description: "Make every birthday special with our tailored menus",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Wedding Reception",
       description: "Elegant catering for your big day",
       image:
-        "https://i.kym-cdn.com/entries/icons/original/000/043/938/cover3.jpg",
+        "https://static01.nyt.com/images/2023/05/14/multimedia/FAT-INDIAN-WEDDINGS-01-hptq/FAT-INDIAN-WEDDINGS-01-hptq-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
     },
     {
       title: "Corporate Event",
