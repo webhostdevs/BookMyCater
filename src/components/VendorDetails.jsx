@@ -234,7 +234,7 @@ const VendorDetails = () => {
             className="hover:text-blue-300"
              onClick={() => {
               selected = "portfolio";
-              setShowImages(false);
+              setShowImages(true);
               setShowPlates(false);
             }}
            
@@ -246,7 +246,7 @@ const VendorDetails = () => {
             className="hover:text-blue-300"
             onClick={() => {
               selected = "Services";
-              setShowImages(true);
+              setShowImages(false);
               setShowPlates(true);
             }}
           >
