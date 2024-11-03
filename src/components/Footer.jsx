@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="flex flex-wrap justify-between">
           {/* Company Info */}
           <div className="w-full md:w-1/3 mb-6">
-            <h2 className="text-lg font-semibold mb-4">About Us</h2>
+            <h2 className="text-lg font-semibold m-4">About Us</h2>
             <p className="text-sm ml-2">
               We provide the best catering services with a focus on quality and
               taste. Our team is dedicated to making your events unforgettable.
