@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { IoCallOutline } from "react-icons/io5";
 import { LiaStarSolid } from "react-icons/lia";
-let selected = "portfolio";
+let selected = "Services";
 const VendorDetails = () => {
   const { id } = useParams();
   const [vendor, setVendor] = useState(null);
@@ -244,7 +244,7 @@ const VendorDetails = () => {
           <button
             className="hover:text-blue-300"
             onClick={() => {
-              selected = "album";
+              selected = "Services";
               setShowPlates(true);
               setShowImages(false);
             }}
@@ -252,16 +252,7 @@ const VendorDetails = () => {
                         Type of Service          
           </button>
                    
-          {/* <button
-            className="hover:text-blue-300"
-            onClick={() => {
-              selected = "images";
-              setShowImages(false);
-              setShowPlates(false);
-            }}
-          >
-                        Images          
-          </button> */}
+         
                     
         </div>
                          {/* Main container occupying 80% height */}         
@@ -450,7 +441,7 @@ const VendorDetails = () => {
         </div>
       </div>
             {/* Stats Section */}     
-      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-lg mt-8 ">
+      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-sm mt-8 ">
                         
         <div className="stat_VegPrice text-center">
                     <b>Veg price per plate</b>          <p>Rs. 2,000</p>       
