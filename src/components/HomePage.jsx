@@ -150,12 +150,12 @@ const HomePage = () => {
                 </button>
               </div>
               <div className="pt-3 bg-white flex-grow">
-                <p
+{/*                 <p
                   className="text-gray-700 flex items-center"
                   style={{ fontSize: "1rem", fontWeight: "500" }}
                 >
                   <FaLocationDot className="mr-1" /> {vendor.business_address}
-                </p>
+                </p> */}
 
                 <h2 className="text-lg text-black font-semibold">
                   Starting from: ₹{vendor.pricing_per_event}
