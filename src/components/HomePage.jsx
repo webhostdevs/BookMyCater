@@ -164,9 +164,9 @@ const HomePage = () => {
                   className="text-white-600 flex items-center"
                   >
                 <p 
-                  style={{ backgroundColor:"black", margin:"10px" , color:"white" }}>
+                  style={{ backgroundColor:"grey", margin:"10px" , color:"white", padding:"5px" }}>
                   Min:{vendor.min_people}</p>
-                <p style={{ backgroundColor:"black", color:"white" }} >
+                <p style={{ backgroundColor:"grey", color:"white" ,padding:"5px"}} >
                   Max:{vendor.max_people}</p>
                   </div>
               </div>
