@@ -113,7 +113,7 @@ const VendorDetails = () => {
                            
               <a
                 href={`tel:${vendor.phone_number}`}
-                className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white items-center gap-2 flex "
+                className="text-white bg-green-500 px-4 py-2 rounded-md mt-4 inline-block hover:bg-green-600 hover:text-white items-center gap-2 flex flex-col"
               >
                                 <IoCallOutline /> Contact us              
               </a>
@@ -232,6 +232,11 @@ const VendorDetails = () => {
                    
           <button
             className="hover:text-blue-300"
+             onClick={() => {
+              selected = "portfolio";
+              setShowImages(false);
+              setShowPlates(false);
+            }}
            
           >
                         Portfolio          
@@ -242,7 +247,7 @@ const VendorDetails = () => {
             onClick={() => {
               selected = "Services";
               setShowImages(true);
-              setShowPlates(false);
+              setShowPlates(true);
             }}
           >
                         Type of Service          
