@@ -442,7 +442,7 @@ const VendorDetails = () => {
         </div>
       </div>
             {/* Stats Section */}     
-      <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-sm mt-8 ">
+{/*       <div className="stats grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-12 bg-white rounded-lg shadow-sm mt-8 ">
                         
         <div className="stat_VegPrice text-center">
                     <b>Veg price per plate</b>          <p>Rs. 2,000</p>       
@@ -461,7 +461,7 @@ const VendorDetails = () => {
                     <b>Min Capacity</b>          <p>100 pax</p>       
         </div>
              
-      </div>
+      </div> */}
             {/* reviews */}     
       <div className="review flex flex-col md:flex-row justify-between items-start mt-8">
         {/* Ratings Section */}
