@@ -12,9 +12,12 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
     setLoggedIn(false);
     logout({ logoutParams: { returnTo: window.location.origin } });
     alert('Logged out successfully');
+    setDropdownOpen(false);  // Close dropdown on logout
   };
 
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+
+  const closeDropdown = () => setDropdownOpen(false); // Helper function to close dropdown
 
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center">
@@ -43,7 +46,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
             />
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg py-2">
-                <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
                   Profile
                 </Link>
                 {persistedUser.email === "siddeshwarreddy616@gmail.com" && (
@@ -52,6 +55,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    onClick={closeDropdown}
                   >
                     New Vendor
                   </a>
