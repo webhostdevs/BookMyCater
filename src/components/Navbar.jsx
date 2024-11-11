@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUser } from 'react-icons/fa';
 
 function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLoggedIn }) {
-  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, user } = useAuth0();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const persistedUser = user;  // Alias user as persistedUser for clarity
 
   const handleLogout = () => {
     setLoggedIn(false);
@@ -26,22 +27,26 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
           {/* Optional Search Field could go here */}
         </div>
 
-        {isAuthenticated && (
+        {persistedUser && (
           <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">
             Contact
           </Link>
         )}
 
-        {isAuthenticated ? (
+        {persistedUser ? (
           <div className="relative">
-            <FaUser size={20} color="currentColor" onClick={toggleDropdown} className="cursor-pointer" />
-            <p className="ml-2">{user.nickname}</p>
+            <img
+              src={persistedUser.picture}
+              alt="User Profile"
+              onClick={toggleDropdown}
+              className="cursor-pointer rounded-full w-8 h-8"
+            />
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg py-2">
                 <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                   Profile
                 </Link>
-                {user.email === "siddeshwarreddy616@gmail.com" && (
+                {persistedUser.email === "siddeshwarreddy616@gmail.com" && (
                   <a
                     href="https://bookmycater.freewebhostmost.com/admin.html"
                     target="_blank"
