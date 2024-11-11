@@ -9,11 +9,13 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
   const persistedUser = user;  // Alias user as persistedUser for clarity
 
   const handleLogout = () => {
-    setLoggedIn(false);
-    logout({ logoutParams: { returnTo: window.location.origin } });
-    alert('Logged out successfully');
-    setDropdownOpen(false);  // Close dropdown on logout
-  };
+  console.log("Logging out...");  // Debugging log
+  setLoggedIn(false);
+  logout({ logoutParams: { returnTo: window.location.origin } });
+  setDropdownOpen(false);  // Close dropdown on logout
+  alert('Logged out successfully');
+};
+
 
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
