@@ -11,6 +11,7 @@ import NewVendor from "./components/NewVendor";
 import EventsPage from "./components/EventsPage.jsx";
 import UserPage from "./components/UserPage.jsx";
 import CateringPlates from "./components/CateringPlates.jsx";
+import VendorMenu from "./components/VendorMenu.jsx";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/profile" element={<UserPage />} />
           <Route path="/type" element={<CateringPlates />} />
+          <Route path="/menu/:id" element={<VendorMenu />} />
         </Routes>
 
         {showAuthForm && (
