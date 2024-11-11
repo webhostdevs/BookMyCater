@@ -63,11 +63,12 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
                   </a>
                 )}
                 <button
-                  onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+                 onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
                   className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
                 >
                   Log Out
                 </button>
+                
               </div>
             )}
           </div>
