@@ -8,8 +8,20 @@ const UserPage = () => {
   const [recentlyViewed, SetRecentlyViewed] = useState(false);
   const [OrderView, SetOrderView] = useState(false);
   const [editButton, SetEditButton] = useState(false);
+  const [reviewCount, setReviewCount] = useState(0);
   const { loginWithRedirect, logout, user } = useAuth0();
-  const persistedUser = user; 
+  const persistedUser = user;
+
+  useEffect(() => {
+    if (persistedUser?.email) {
+      fetch(`https://bookmycater.freewebhostmost.com/getallreviews.php?email=${persistedUser.email}`)
+        .then(response => response.json())
+        .then(data => {
+          setReviewCount(data.review_count || 0);
+        })
+        .catch(error => console.error("Error fetching review count:", error));
+    }
+  }, [persistedUser]);
   
   return (
     <>
@@ -29,7 +41,7 @@ const UserPage = () => {
               <h1 className="text-4xl font-bold text-gray-700 tracking-wide">
                 {persistedUser.name}
               </h1>
-              <p className="text-gray-500">{persistedUser.nickname}</p>
+              <p className="text-gray-500">{persistedUser.email}</p>
 {/*               <p className="text-gray-500">+91 123456789</p> */}
             </div>
           </div>
@@ -54,7 +66,7 @@ const UserPage = () => {
             <div className="flex gap-10 mt-4 text-center">
               <div>
                 <p className="text-lg font-semibold text-gray-100">Reviews</p>
-                <p className="text-4xl font-bold text-gray-100">21</p>
+                <p className="text-4xl font-bold text-gray-100">{reviewCount}</p>
               </div>
               <div>
                 <p className="text-lg font-semibold text-gray-100">Orders</p>
