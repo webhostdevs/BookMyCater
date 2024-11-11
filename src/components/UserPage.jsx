@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const UserPage = () => {
   const [AddressForm, SetAddressForm] = useState(false);
@@ -7,7 +8,9 @@ const UserPage = () => {
   const [recentlyViewed, SetRecentlyViewed] = useState(false);
   const [OrderView, SetOrderView] = useState(false);
   const [editButton, SetEditButton] = useState(false);
-
+  const { loginWithRedirect, logout, user } = useAuth0();
+  const persistedUser = user; 
+  
   return (
     <>
       <div className="flex flex-col gap-12 items-start min-h-screen bg-gray-200 px-6 md:px-44 ">
@@ -17,17 +20,17 @@ const UserPage = () => {
           <div className="flex flex-row items-center space-x-6 w-full md:w-auto">
             <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-gray-100 shadow-md transform hover:scale-110 transition duration-300 ease-in-out">
               <img
-                src="https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D"
-                alt="Profile"
+                src={persistedUser.picture}
+                alt="User Profile"
                 className="w-full h-full object-cover"
               />
             </div>
             <div>
               <h1 className="text-4xl font-bold text-gray-700 tracking-wide">
-                John Wick
+                {persistedUser.nickname}
               </h1>
-              <p className="text-gray-500">johnwick@gmail.com</p>
-              <p className="text-gray-500">+91 123456789</p>
+              <p className="text-gray-500">{persistedUser.name}</p>
+{/*               <p className="text-gray-500">+91 123456789</p> */}
             </div>
           </div>
 
