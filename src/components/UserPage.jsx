@@ -27,9 +27,9 @@ const UserPage = () => {
             </div>
             <div>
               <h1 className="text-4xl font-bold text-gray-700 tracking-wide">
-                {persistedUser.nickname}
+                {persistedUser.name}
               </h1>
-              <p className="text-gray-500">{persistedUser.name}</p>
+              <p className="text-gray-500">{persistedUser.nickname}</p>
 {/*               <p className="text-gray-500">+91 123456789</p> */}
             </div>
           </div>
