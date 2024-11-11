@@ -1,5 +1,7 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
 
 function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLoggedIn }) {
   const handleLogout = () => {
@@ -7,6 +9,7 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
     setLoggedIn(false);
     alert('Logged out successfully');
   };
+  const { loginWithRedirect,logout,user, isAuthenticated } = useAuth0();
 
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center">
@@ -16,36 +19,36 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
       {/* Right - Search and Navigation */}
       <div className="flex items-center space-x-4">
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-          {/* Optional: Add search bar or other elements */}
+
         </div>
+
+        
+       {
+        isAuthenticated && 
         <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">
-          Contact
-        </Link>  
-        <Link to="https://bookmycater.freewebhostmost.com/admin.html" className="text-gray-700 hover:text-black transition">
-              NewVendor
-            </Link> 
-        <Link to="/profile" className="text-gray-700 hover:text-black transition">
-              Profile
-            </Link> 
-        {/* Login/Logout Button */}
-        {isLoggedIn ? (
-          <React.Fragment>
-            
-            <button 
-              onClick={handleLogout} 
-              className="flex items-center text-gray-700 hover:text-black transition"
-            >
-              <i className="fas fa-sign-out-alt mr-1"></i> Logout
-            </button>
-          </React.Fragment>
-        ) : (
-          <button 
-            onClick={toggleAuthForm} 
-            className="flex items-center bg-gray-800 text-white px-4 py-1 hover:bg-gray-900 transition"
-          >
-            <i className="fas fa-user mr-2"></i> Login
-          </button>
-        )}
+        Contact
+        </Link> 
+       }
+
+
+        {
+          isAuthenticated && <FaUser size={16} color="currentColor" />
+        } 
+        {
+          isAuthenticated && <p className="ml-0">{user.nickname}</p>
+        } 
+        
+        {
+          isAuthenticated ?
+          
+          <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+      Log Out
+    </button>
+    :
+    <button onClick={() => loginWithRedirect()}>Log In</button>
+        }
+        
+        
       </div>
     </nav>
   );
