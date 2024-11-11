@@ -32,6 +32,9 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
           {/* Optional Search Field could go here */}
         </div>
 
+        <Link to="/type" className="text-gray-700 hover:text-black transition">
+            type
+          </Link>
         {persistedUser && (
           <Link to="/ContactUs" className="text-gray-700 hover:text-black transition">
             Contact
