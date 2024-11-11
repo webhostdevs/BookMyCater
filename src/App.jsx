@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import NewVendor from "./components/NewVendor";
 import EventsPage from "./components/EventsPage.jsx";
 import UserPage from "./components/UserPage.jsx";
+import CateringPlates from "./components/CateringPlates.jsx";
+
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,6 +40,7 @@ function App() {
           <Route path="/admin" element={<NewVendor />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/profile" element={<UserPage />} />
+          <Route path="/type" element={<CateringPlates />} />
         </Routes>
 
         {showAuthForm && (
