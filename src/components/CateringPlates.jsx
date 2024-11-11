@@ -23,7 +23,7 @@ function CateringPlates() {
   if (!vendor) return <p>Loading...</p>;
 
   const handleSelectPlate = (vendorId) => {
-    navigate(`/menu/${vendorId}`);
+    navigate(`/menu/${vendor.id}`);
   };
 
   return (
