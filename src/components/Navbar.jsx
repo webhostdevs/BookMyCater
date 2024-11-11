@@ -24,6 +24,9 @@ function Navbar({ searchTerm, setSearchTerm, toggleAuthForm, isLoggedIn, setLogg
         <Link to="https://bookmycater.freewebhostmost.com/admin.html" className="text-gray-700 hover:text-black transition">
               NewVendor
             </Link> 
+        <Link to="/profile" className="text-gray-700 hover:text-black transition">
+              Profile
+            </Link> 
         {/* Login/Logout Button */}
         {isLoggedIn ? (
           <React.Fragment>
