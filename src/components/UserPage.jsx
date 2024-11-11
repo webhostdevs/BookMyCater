@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const UserPage = () => {
@@ -8,70 +8,64 @@ const UserPage = () => {
   const [recentlyViewed, SetRecentlyViewed] = useState(false);
   const [OrderView, SetOrderView] = useState(false);
   const [editButton, SetEditButton] = useState(false);
-  const [reviewCount, setReviewCount] = useState(0);
   const { loginWithRedirect, logout, user } = useAuth0();
-  const persistedUser = user;
-
-  useEffect(() => {
-    if (persistedUser?.email) {
-      fetch(`https://yourdomain.com/getallreviews.php?email=${persistedUser.email}`)
-        .then(response => response.json())
-        .then(data => {
-          setReviewCount(data.review_count || 0);
-        })
-        .catch(error => console.error("Error fetching review count:", error));
-    }
-  }, [persistedUser]);
-
+  const persistedUser = user; 
+  
   return (
-    <div className="flex flex-col gap-12 items-start min-h-screen bg-gray-200 px-6 md:px-44">
-      {/* Profile Section */}
-      <div className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 rounded-3xl shadow-lg w-full flex flex-col md:flex-row md:items-center justify-between p-8 space-y-6 md:space-y-0 md:space-x-8 transform hover:scale-105 transition duration-300 ease-in-out mt-8">
-        <div className="flex flex-row items-center space-x-6 w-full md:w-auto">
-          <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-gray-100 shadow-md transform hover:scale-110 transition duration-300 ease-in-out">
-            <img
-              src={persistedUser.picture}
-              alt="User Profile"
-              className="w-full h-full object-cover"
-            />
+    <>
+      <div className="flex flex-col gap-12 items-start min-h-screen bg-gray-200 px-6 md:px-44 ">
+        {/* Profile Section */}
+        <div className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 rounded-3xl shadow-lg w-full flex flex-col md:flex-row md:items-center justify-between p-8 space-y-6 md:space-y-0 md:space-x-8 transform hover:scale-105 transition duration-300 ease-in-out mt-8">
+          {/* Profile Picture and Name */}
+          <div className="flex flex-row items-center space-x-6 w-full md:w-auto">
+            <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-gray-100 shadow-md transform hover:scale-110 transition duration-300 ease-in-out">
+              <img
+                src={persistedUser.picture}
+                alt="User Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-gray-700 tracking-wide">
+                {persistedUser.name}
+              </h1>
+              <p className="text-gray-500">{persistedUser.nickname}</p>
+{/*               <p className="text-gray-500">+91 123456789</p> */}
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl font-bold text-gray-700 tracking-wide">
-              {persistedUser.name}
-            </h1>
-            <p className="text-gray-500">{persistedUser.nickname}</p>
+
+          {/* Info Section */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+            <button
+              className="bg-gray-100 text-gray-700 font-semibold px-10 py-3 rounded-full shadow-md hover:bg-gray-700 hover:text-gray-100 transition duration-300 transform hover:scale-105"
+              onClick={() => {
+                SetEditButton(!editButton);
+                SetAddressForm(false);
+                SetOrderForm(false);
+                SetLiked(false);
+                recentlyViewed(false);
+                SetOrderView(false);
+              }}
+            >
+              Edit Profile
+            </button>
+
+            {/* Stats Section */}
+            <div className="flex gap-10 mt-4 text-center">
+              <div>
+                <p className="text-lg font-semibold text-gray-100">Reviews</p>
+                <p className="text-4xl font-bold text-gray-100">21</p>
+              </div>
+              <div>
+                <p className="text-lg font-semibold text-gray-100">Orders</p>
+                <p className="text-4xl font-bold text-gray-100">15</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Info Section */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-          <button
-            className="bg-gray-100 text-gray-700 font-semibold px-10 py-3 rounded-full shadow-md hover:bg-gray-700 hover:text-gray-100 transition duration-300 transform hover:scale-105"
-            onClick={() => {
-              SetEditButton(!editButton);
-              SetAddressForm(false);
-              SetOrderForm(false);
-              SetLiked(false);
-              SetRecentlyViewed(false);
-              SetOrderView(false);
-            }}
-          >
-            Edit Profile
-          </button>
 
-          {/* Stats Section */}
-          <div className="flex gap-10 mt-4 text-center">
-            <div>
-              <p className="text-lg font-semibold text-gray-100">Reviews</p>
-              <p className="text-4xl font-bold text-gray-100">{reviewCount}</p>
-            </div>
-            <div>
-              <p className="text-lg font-semibold text-gray-100">Orders</p>
-              <p className="text-4xl font-bold text-gray-100">15</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        
         {/* Main Content */}
         <div className="w-full flex flex-row gap-6 items-stretch mb-10">
           {/* Left Menu */}
