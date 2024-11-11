@@ -9,6 +9,8 @@ import "./App.css";
 import Footer from "./components/Footer";
 import NewVendor from "./components/NewVendor";
 import EventsPage from "./components/EventsPage.jsx";
+import UserPage from "./components/UserPage.jsx";
+
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showAuthForm, setShowAuthForm] = useState(false);
@@ -35,6 +37,7 @@ function App() {
           <Route path="/contactus" element={<ContactForm />} />
           <Route path="/admin" element={<NewVendor />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/profile" element={<UserPage />} />
         </Routes>
 
         {showAuthForm && (
