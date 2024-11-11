@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')).render(
   <Auth0Provider
   domain="dev-ewda4aowim00fxep.us.auth0.com"
   clientId="YIJjRXFRaguYdJtGRgQpFIucPQ6uRNcl"
-  redirectUri={window.location.origin}
+  authorizationParams.redirect_uri={window.location.origin}
   cacheLocation="localstorage"
 >
   <App />
