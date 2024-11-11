@@ -7,17 +7,12 @@ function CateringPlates() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch reviews for the specific vendor
-    fetch(`https://bookmycater.freewebhostmost.com/fetchreviews.php?vendor_id=${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.error) {
-          setVendor(data);
-        } else {
-          console.error(data.error);
-        }
-      })
-      .catch((error) => console.error('Error fetching reviews:', error));
+    axios
+      .get(
+        `https://bookmycater.freewebhostmost.com/getVendorDetails.php?id=${id}`
+      )
+      .then((response) => setVendor(response.data))
+      .catch((error) => console.error(error));
   }, [id]);
 
   if (!vendor) return <p>Loading...</p>;
